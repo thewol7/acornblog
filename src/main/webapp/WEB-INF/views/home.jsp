@@ -29,7 +29,7 @@
     <li><a href="javascript:">HOME</a></li>
     <li class="dropdown-toggle"><a href="javascript:">BOARD</a></li>
       <ul class="dropdown-menu">
-        <li><a href="javascript:">PRIVATE BOARD</a></li>
+        <li><a href="board/Priboardlist.do">PRIVATE BOARD</a></li>
         <li><a href="javascript:">PICTURE BOARD</a></li>
         <li><a href="javascript:">VISIT BOARD</a></li>
       </ul>

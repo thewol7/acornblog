@@ -3,15 +3,15 @@
 <mapper namespace="priboard">
 	<!-- 자주 사용하는 sql 문을 미리 정의 해 놓기 -->
 	<sql id="PriColumns">
-		num,writer,title,content,viewCount,
-		TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate
+		cont_id,user_id,content_title,content_content,view_count
+		TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS content_date
 	</sql>
 	<select id="getList" resultType="PriDto" parameterType="PriDto">
 		SELECT *
 		FROM (SELECT result1.*,ROWNUM rnum 
-		  FROM (SELECT num,writer,title,content,viewCount,regdate 
+		  FROM (SELECT cont_id,user_id,content_title,content_content,view_count,content_date
 				FROM tp_priboard
-			    ORDER BY num DESC
+			    ORDER BY cont_id DESC
 			    ) result1
 	     )
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
@@ -19,16 +19,16 @@
 	
 	<insert id="insert" parameterType="PriDto">
 		INSERT INTO tp_priboard 
-		(num, writer, title, content, viewCount, regdate) 
+		(cont_id,user_id,content_title,content_content,view_count,content_date) 
 		VALUES(tp_priboard_seq.NEXTVAL, 
-		#{writer}, #{title}, #{content}, #{viewCount}, SYSDATE)
+		#{user_id}, #{content_title}, #{content_content}, #{view_count}, SYSDATE)
 	</insert>
 	
 	<!-- 조회수  1 증가 시키기 -->
-	<update id="increaseViewCount" parameterType="int">
+	<update id="increaseview_count" parameterType="int">
 		UPDATE tp_priboard
-		SET viewCount = viewCount+1
-		WHERE num=#{num}
+		SET view_count = view_count+1
+		WHERE cont_id=#{cont_id}
 	</update>
 	
 	<!-- 글정보 얻어오기 -->
@@ -36,18 +36,18 @@
 		resultType="PriDto">
 		SELECT <include refid="PriColumns"/>
 		FROM tp_priboard
-		WHERE num=#{num}	
+		WHERE cont_id=#{cont_id}	
 	</select>
 	
 	<delete id="delete" parameterType="int">
 		DELETE FROM tp_priboard
-		WHERE num=#{num}
+		WHERE cont_id=#{cont_id}
 	</delete>	
 	
 	<update id="update" parameterType="PriDto">
 		UPDATE tp_priboard 
-		SET title=#{title}, content=#{content}
-		WHERE num=#{num}
+		SET content_title=#{content_title}, content=#{content_content}
+		WHERE cont_id=#{cont_id}
 	</update>
 	<select id="getCount" resultType="int">
 		SELECT NVL(MAX(ROWNUM), 0)

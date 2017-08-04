@@ -16,44 +16,40 @@ public class PriBoardDaoImpl implements PriBoardDao{
 	
 	@Override
 	public void insert(PriBoardDto dto) {
-		// TODO Auto-generated method stub
-		
+		session.insert("priboard.insert",dto);
 	}
 
 	@Override
 	public void update(PriBoardDto dto) {
-		// TODO Auto-generated method stub
-		
+		session.update("priboard.update", dto);
 	}
 
 	@Override
-	public void delete(int num) {
-		// TODO Auto-generated method stub
-		
+	public void delete(int cont_id) {
+		session.delete("priboard.delete", cont_id);
 	}
 
 	@Override
-	public PriBoardDto getData(int num) {
-		// TODO Auto-generated method stub
-		return null;
+	public PriBoardDto getData(int cont_id) {
+		PriBoardDto dto=session.selectOne("priboard.getData", cont_id);
+		return dto;
 	}
 
 	@Override
 	public List<PriBoardDto> getList(PriBoardDto dto) {
-		// TODO Auto-generated method stub
-		return null;
+		List<PriBoardDto> list=session.selectList("priboard.getList", dto);
+		return list;
 	}
 
 	@Override
-	public void increaseViewCount(int num) {
-		// TODO Auto-generated method stub
+	public void increaseViewCount(int cont_id) {
+		session.update("priboard.increaseViewCount", cont_id);
 		
 	}
 
 	@Override
 	public int getCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		return session.selectOne("priboard.getCount");
 	}
 
 }
