@@ -16,7 +16,6 @@
 			<value>classpath:com/acorn/blog/mybatis/db.properties</value>
 		</property>
 	</bean>
-	
 	<!-- DataSource 설정 -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
 		<property name="driverClass" value="${driver}"/>
@@ -46,10 +45,7 @@
 	
 	<!-- 어노테이션으로 트렌젝션을 적용할 위치를 지정할수 있도록 -->
 	<tx:annotation-driven transaction-manager="txManager"/>
-	<mvc:resources location="/resources/css/" mapping="/css/**"/>
-	<mvc:resources location="/resources/images/" mapping="/images/**"/>
-	<mvc:resources location="/resources/js/" mapping="/js/**"/>
-	<mvc:resources location="/resources/" mapping="/resources/**"/>
+	
 	
 	<!-- Multipart 폼 전송을 처리하기 위한 bean -->
 	
@@ -66,6 +62,7 @@
 	<context:component-scan base-package="com.acorn.blog"/>
 	<context:component-scan base-package="com.acorn.blog.*"/>
 	
+	
 	<!-- View Page 설정 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/"/>
@@ -73,3 +70,4 @@
 	</bean>
 
 </beans>
+
