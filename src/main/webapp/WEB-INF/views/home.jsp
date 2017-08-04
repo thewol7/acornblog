@@ -44,7 +44,16 @@
   </ul>
 </div>
 <div class="rbox">
-  <h3><a href="javascript:">로그인</a> | <a href="javascript:">회원가입</a></h3>
+  <h3>
+  <c:choose>
+  	<c:when test="${empty id }">
+  		<a href="users/signin_form.do?url=${pageContext.request.contextPath }">로그인</a> | <a href="users/signup_form.do">회원가입</a>
+  	</c:when>
+  	<c:otherwise>
+  		<a href="users/signout.do?url=${pageContext.request.contextPath }">로그아웃- 로그인된계정(${session.name })</a> | <a href="users/signup_form.do">회원가입</a>
+  	</c:otherwise>
+  </c:choose>
+  </h3>
   <a class="collapsebox" href="javascript:collapse()">
     <div class="bar"></div>
   </a>
@@ -53,11 +62,19 @@
   <h3>aaa님의 페이지입니다.</h3>
   <div class="divline"></div>
   <div class="main-profile">
-    <img src="${pageContext.request.contextPath }/resources/images/logo.png" />
-    <h4>이름: aaa</h4>
-    <h4>성별: </h4>
-    <h4>이메일: </h4>
-    <h4>등등등</h4>
+  	<%-- ${info.profile_img } --%>
+  	<c:choose>
+	  	<c:when test="${empty info.profile_img }">
+	  		<img src="${pageContext.request.contextPath }/resources/images/icons/default.png" /> 
+	  	</c:when>
+	  	<c:otherwise>
+  			<img src="${info.profile_img }" />
+  		</c:otherwise>
+  	</c:choose>
+    <h4>이름: 페이지주인(${info.name })</h4>
+    <h4>성별: ${info.gender }</h4>
+    <h4>이메일: ${info.email }</h4>
+    <h4>등등등 </h4>
   </div>
   <h3>최근 게시글</h3>
   <div class="divline"></div>
