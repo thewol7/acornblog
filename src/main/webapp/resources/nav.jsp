@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div class="nav">
-  <div class="profile"><img src="logo.png" /></div>
+  <div class="profile"><img src="${session.profile_img }" /></div>
   <div class="owner"></div>
   <ul>
     <li><a href="${pageContext.request.contextPath }/">HOME</a></li>
@@ -15,8 +15,8 @@
     <li><a href="javascript:">OTHERS</a></li>
       <c:choose>
       	<c:when test="${empty id }">
-		    <li class="visible-lg"><a href="javascript:">로그인</a></li>
-		    <li class="visible-lg"><a href="javascript:">회원가입</a></li>
+		    <a href="users/signin_form.do?url=${pageContext.request.contextPath }">로그인</a>
+		    <a href="users/signup_form.do">회원가입</a>
 	    </c:when>
 	    <c:otherwise>
 	    	<li class="dropdown-toggle"><a href="javascript:">MY PAGE</a></li>
@@ -25,7 +25,7 @@
 		        <li><a href="javascript:">개인정보 관리</a></li>
 		        <li><a href="javascript:">설정</a></li>
 		      </ul>
-	    	<li class="visible-lg"><a href="javascript:">로그아웃</a></li>
+	    	<a href="users/signout.do?url=${pageContext.request.contextPath }">로그아웃-로그인된계정test(${session.name })</a>
 	    </c:otherwise>
       </c:choose>
   </ul>
@@ -37,12 +37,12 @@
     <li><a href="javascript:">OTHERS</a></li>
     <c:choose>
       	<c:when test="${empty id }">
-		    <li><a href="javascript:">로그인</a></li>
-		    <li><a href="javascript:">회원가입</a></li>
+		    <a href="users/signin_form.do?url=${pageContext.request.contextPath }">로그인</a>
+		    <a href="users/signup_form.do">회원가입</a>
 	    </c:when>
 	    <c:otherwise>
 	    	<li><a href="javascript:">MY PAGE</a></li>
-	    	<li><a href="javascript:">로그아웃</a></li>
+	    	<a href="users/signout.do?url=${pageContext.request.contextPath }">로그아웃- 로그인된계정test(${session.name })</a>
 	    </c:otherwise>
       </c:choose>
   </ul>
@@ -50,10 +50,10 @@
 <div class="rbox">
 	<c:choose>
       	<c:when test="${empty id }">
-		    <h3><a href="javascript:">로그인</a> | <a href="javascript:">회원가입</a></h3>
+		    <a href="users/signin_form.do?url=${pageContext.request.contextPath }">로그인</a> | <a href="users/signup_form.do">회원가입</a>
 	    </c:when>
 	    <c:otherwise>
-	    	<h3><a href="javascript:">로그아웃</a></h3>
+	    	<a href="users/signout.do?url=${pageContext.request.contextPath }">로그아웃- 로그인된계정test(${session.name })</a>
 	    </c:otherwise>
       </c:choose>
   

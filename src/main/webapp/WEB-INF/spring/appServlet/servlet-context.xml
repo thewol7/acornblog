@@ -16,7 +16,6 @@
 			<value>classpath:com/acorn/blog/mybatis/db.properties</value>
 		</property>
 	</bean>
-	
 	<!-- DataSource 설정 -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
 		<property name="driverClass" value="${driver}"/>
@@ -26,7 +25,7 @@
 	</bean>
 	
 	<!-- SqlSessionFactory 객체 -->
-	<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" >
 		<property name="dataSource" ref="dataSource"/>
 		<property name="configLocation"
 			value="classpath:com/acorn/blog/mybatis/Configuration.xml"/>
@@ -34,7 +33,7 @@
 	
 	<!-- Dao 에 주입해줄 SqlSession 인터페이스를 구현한 
 	SqlSessionTemplate 객체 -->
-	<bean class="org.mybatis.spring.SqlSessionTemplate">
+	<bean class="org.mybatis.spring.SqlSessionTemplate"><!-- scope="prototype"> -->
 		<constructor-arg name="sqlSessionFactory" ref="sessionFactory"/>
 	</bean>	
 	
@@ -46,10 +45,7 @@
 	
 	<!-- 어노테이션으로 트렌젝션을 적용할 위치를 지정할수 있도록 -->
 	<tx:annotation-driven transaction-manager="txManager"/>
-	<mvc:resources location="/resources/css/" mapping="/css/**"/>
-	<mvc:resources location="/resources/images/" mapping="/images/**"/>
-	<mvc:resources location="/resources/js/" mapping="/js/**"/>
-	<mvc:resources location="/resources/" mapping="/resources/**"/>
+	
 	
 	<!-- Multipart 폼 전송을 처리하기 위한 bean -->
 	
@@ -65,11 +61,16 @@
 	
 	<context:component-scan base-package="com.acorn.blog"/>
 	<context:component-scan base-package="com.acorn.blog.*"/>
-	
+	<context:component-scan base-package="com.acorn.blog.filter.ServerFilter">
+  		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+	</context:component-scan>
+
 	<!-- View Page 설정 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/"/>
 		<property name="suffix" value=".jsp"/>
 	</bean>
-
+	
+	
 </beans>
+

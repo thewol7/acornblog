@@ -17,11 +17,18 @@
 	<h3>aaa님의 페이지입니다.</h3>
   <div class="divline"></div>
   <div class="main-profile">
-    <img src="logo.png" />
-    <h4>이름: aaa</h4>
-    <h4>성별: </h4>
-    <h4>이메일: </h4>
-    <h4>등등등</h4>
+    	<c:choose>
+	  	<c:when test="${empty info.profile_img }">
+	  		<img src="${pageContext.request.contextPath }/resources/images/default.png" /> 
+	  	</c:when>
+	  	<c:otherwise>
+  			<img src="${info.profile_img }" />
+  		</c:otherwise>
+  	</c:choose>
+    <h4>이름: 페이지주인test(${info.name })</h4>
+    <h4>성별: ${info.gender }</h4>
+    <h4>이메일: ${info.email }</h4>
+    <h4>등등등 </h4>
   </div>
   <h3>최근 게시글</h3>
   <div class="divline"></div>
@@ -75,19 +82,19 @@
   <div class="divline"></div>
   <div class="pics">
     <div class="pic">
-      <a href="javascript:" style="background-image:url(img1.jpg);"></a>
+      <a href="javascript:" style="background-image:url(${pageContext.request.contextPath }/resources/images/img1.jpg);"></a>
       <h3>사진의 제목</h3>
     </div>
     <div class="pic">
-      <a href="javascript:" style="background-image:url(img2.JPG);"></a>
+      <a href="javascript:" style="background-image:url(${pageContext.request.contextPath }/resources/images/img2.JPG);"></a>
       <h3>이렇게 이쁘게</h3>
     </div>
     <div class="pic">
-      <a href="javascript:" style="background-image:url(img3.jpg);"></a>
+      <a href="javascript:" style="background-image:url(${pageContext.request.contextPath }/resources/images/img3.jpg);"></a>
       <h3>뜨지롱</h3>
     </div>
     <div class="pic">
-      <a href="javascript:" style="background-image:url(img4.jpg);"></a>
+      <a href="javascript:" style="background-image:url(${pageContext.request.contextPath }/resources/images/img4.jpg);"></a>
       <h3>ㅎㅎ</h3>
     </div>
   </div>
