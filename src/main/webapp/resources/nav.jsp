@@ -2,7 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <div class="nav">
-  <div class="profile"><img src="${session.profile_img }" /></div>
+  <div class="profile">
+  	 <c:choose>
+	  	<c:when test="${empty info.profile_img }">
+	  		<img src="${pageContext.request.contextPath }/resources/images/default.png" /> 
+	  	</c:when>
+	  	<c:otherwise>
+  			<img src="${info.profile_img }" />
+  		</c:otherwise>
+  	</c:choose>
+  </div>
   <div class="owner"></div>
   <ul>
     <li><a href="${pageContext.request.contextPath }/">HOME</a></li>

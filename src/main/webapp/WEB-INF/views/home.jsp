@@ -17,7 +17,7 @@
 	<h3>aaa님의 페이지입니다.</h3>
   <div class="divline"></div>
   <div class="main-profile">
-    	<c:choose>
+    <c:choose>
 	  	<c:when test="${empty info.profile_img }">
 	  		<img src="${pageContext.request.contextPath }/resources/images/default.png" /> 
 	  	</c:when>
