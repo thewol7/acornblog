@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.acorn.blog.board.dao.PriBoardCommentDao;
 import com.acorn.blog.board.dao.PriBoardDao;
 import com.acorn.blog.board.dto.PriBoardCommentDto;
 import com.acorn.blog.board.dto.PriBoardDto;
@@ -19,7 +20,8 @@ public class PriBoardServiceImpl implements PriBoardService{
 	private static final int PAGE_DISPLAY_COUNT=5;
 	@Autowired
 	private PriBoardDao priboardDao;
-	
+	@Autowired
+	private PriBoardCommentDao pricommentDao;
 
 	@Override
 	public void insert(PriBoardDto dto) {
@@ -86,8 +88,17 @@ public class PriBoardServiceImpl implements PriBoardService{
 
 	@Override
 	public void commentInsert(PriBoardCommentDto dto) {
-		// TODO Auto-generated method stub
-		
+		//1.저장할 덧글번호를 미리 읽어온다.
+		int seq=pricommentDao.getSequence();
+		dto.setNum(seq);//글번호로 사용한다
+		//2. 원글의 덧글인지 덧글의 덧글인지 판별해서 다른 처리를 해준다.
+		int comment_group=dto.getComment_group();
+		if(comment_group ==0){// 0이면 원글의 댓글
+			//원글의 덧글이면 그룹번호를 저장할 덧글번호로 지정한다.
+			dto.setComment_group(seq);
+		}
+		//3. Dao를 이용해서 DB에 저장
+		pricommentDao.insert(dto);
 	}
 
 	@Override
