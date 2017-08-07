@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="users">
+	<select id="signin" resultType="int" parameterType="usersDto">
+		SELECT user_id
+		FROM tp_account
+		WHERE id=#{id} AND pwd=#{pwd}
+	</select>
+	<select id="getInfo" resultType="usersDto" parameterType="usersDto">
+		SELECT user_id, id, pwd, name, gender, phone, email, 
+		TO_CHAR(create_date, 'mon DD, YYYY', 'NLS_DATE_LANGUAGE=ENGLISH') AS create_date, today, profile_img, profile_cmt
+		FROM tp_account
+		WHERE user_id=#{user_id}
+	</select>
+	<select id="getRandomPage" resultType="usersDto"><!-- DY MM, YYYY -->
+		SELECT *
+		FROM tp_account
+	</select>
+	<select id="idcheck" resultType="int" parameterType="String">
+		SELECT count(*)
+		FROM tp_account
+		WHERE id=#{id}
+	</select>
+	<insert id="signup" parameterType="usersDto">
+		INSERT INTO tp_account (user_id, id, pwd, name, gender, phone, email, create_date, today, profile_img, profile_cmt)
+		VALUES (tp_account_seq.NEXTVAL, #{id}, #{pwd}, #{name}, #{gender}, #{phone}, #{email}, SYSDATE, DEFAULT, #{profile_img}, #{profile_cmt})
+	</insert>
+</mapper>
+
+
+
+
+
+
+
+

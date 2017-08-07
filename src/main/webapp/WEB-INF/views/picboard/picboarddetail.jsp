@@ -144,6 +144,42 @@
 		<div id="sidebar">
 		</div>
 
+		<!-- 덧글 -->
+		<div class="comments">
+			<c:forEach var="tmp" items="${commentList }">
+				<div class="comment" <c:if test="${tmp.num ne tmp.comment_group }">style="margin-left:100px"</c:if> >	
+					<c:if test="${tmp.num ne tmp.comment_group }">
+						<div class="reply_icon"></div>
+					</c:if>
+					<div>		
+						<strong>from ${tmp.writer }</strong>
+						${tmp.regdate }<br/>
+						<a href="javascript:">답글</a>
+					</div>
+					<textarea rows="5" disabled>${tmp.content}</textarea><br/>
+					<form action="comment_insert.do" method="post">
+						<!-- 덧글 작성자 -->
+						<input type="hidden" name="writer" value="${id}"/>
+						<!-- 덧글 그룹 -->
+						<input type="hidden" name="ref_group" value="${dto.num}" />
+						<input type="hidden" name="comment_group" value="${tmp.comment_group}" />
+						<textarea name="content"></textarea>
+						<button type="submit">등록</button>
+					</form>
+				</div>
+				
+			</c:forEach>
+		
+			<div class="comment_form">
+				<form action="comment_insert.do" method="post">
+					<!-- 덧글 작성자 -->
+					<input type="hidden" name="writer" value="${id}"/>
+					<!-- 덧글 그룹 -->
+					<textarea name="content" style="resize:none"></textarea>
+					<button type="submit">등록</button>
+				</form>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

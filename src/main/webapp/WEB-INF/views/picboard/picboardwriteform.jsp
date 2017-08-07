@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
+<script src="${pageContext.request.contextPath }/resources/ckeditor/ckeditor.js"></script>
 <title>Insert title here</title>
 </head>
 <style>
@@ -84,7 +85,7 @@
 				<form method="post" action="picboardwrite.do">
 					<div class="row uniform">
 						<div class="12u 12u$(xsmall)">
-							<input type="text" name="title" id="title" value=""
+							<input type="text" name="content_title" id="title" value=""
 								placeholder="제목" maxlength="50"/><!-- maxlength="50" -->
 						</div>
 						<div class="12u$">

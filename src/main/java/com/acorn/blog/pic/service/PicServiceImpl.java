@@ -20,11 +20,6 @@ public class PicServiceImpl implements PicService {
 	@Autowired
 	private PicCommentDao commentDao;
 	
-	//한 페이지에 나타낼 로우의 갯수
-	private static final int PAGE_ROW_COUNT=5;
-	//하단 디스플레이 페이지 갯수
-	private static final int PAGE_DISPLAY_COUNT=5;
-	
 	@Override
 	public void insertPics(PicDto dto) {
 		picDao.insertPics(dto);
@@ -32,10 +27,9 @@ public class PicServiceImpl implements PicService {
 
 	@Override
 	public ModelAndView getList(PicDto dto) {
-		
-		List<PicDto> list=picDao.getList(dto);
+		List<PicDto> data=picDao.getList(dto);
 		ModelAndView mView=new ModelAndView();
-		mView.addObject("list",list);
+		mView.addObject("data",data);
 		
 		return mView;
 	}

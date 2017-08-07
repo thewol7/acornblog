@@ -1,29 +1,39 @@
 package com.acorn.blog.pic.dto;
 
 public class PicCommentDto {
-	private int num; //글번호
+	private int num;
+	private int user_id;
 	private String writer;
 	private String content;
-	private String target_id; //덧글의 대상이 되는 글 작성자 id
-	private int ref_group; //덧글의 그룹번호
-	private int comment_group; //덧글 내에서의 그룹
+	private int ref_group;
+	private int comment_group;
 	private String regdate;
-	public PicCommentDto(int num, String writer, String content, String target_id, int ref_group, int comment_group,
-			String regdate) {
+	private String profile_img;
+	
+	public PicCommentDto(int num, int user_id, String writer, String content, int ref_group, int comment_group,
+			String regdate, String profile_img) {
 		super();
 		this.num = num;
+		this.user_id = user_id;
 		this.writer = writer;
 		this.content = content;
-		this.target_id = target_id;
 		this.ref_group = ref_group;
 		this.comment_group = comment_group;
 		this.regdate = regdate;
+		this.profile_img = profile_img;
 	}
+	
 	public int getNum() {
 		return num;
 	}
 	public void setNum(int num) {
 		this.num = num;
+	}
+	public int getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
 	}
 	public String getWriter() {
 		return writer;
@@ -36,12 +46,6 @@ public class PicCommentDto {
 	}
 	public void setContent(String content) {
 		this.content = content;
-	}
-	public String getTarget_id() {
-		return target_id;
-	}
-	public void setTarget_id(String target_id) {
-		this.target_id = target_id;
 	}
 	public int getRef_group() {
 		return ref_group;
@@ -60,6 +64,12 @@ public class PicCommentDto {
 	}
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
+	}
+	public String getProfile_img() {
+		return profile_img;
+	}
+	public void setProfile_img(String profile_img) {
+		this.profile_img = profile_img;
 	}
 	
 	

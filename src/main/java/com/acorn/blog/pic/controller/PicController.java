@@ -101,7 +101,6 @@ public class PicController {
 	public String idCheckInsert(HttpServletRequest request,@ModelAttribute PicDto dto){
 		// 글쓰기 저장 동작
 		String content = (String) request.getParameter("ckValue");
-
 		/*------추출한 content에서 http 속성을 추출해서 저장하는 부분-------*/
 		// 정규식은 http://로 시작해서 * 모든문자 (숫자/)로 끝나는 문자 패턴 http://.*([0-9a-zA-Z]/)
 		Pattern patternImg = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>");
@@ -115,6 +114,7 @@ public class PicController {
 			pic_OrgUrl = matchOrg.group(0); // 글 내용 중에 첫번째 이미지 태그를 뽑아옴.
 		}
 		System.out.println("pic OrgUrl 추출 완료");
+		System.out.println(pic_OrgUrl);
 
 		/* 여기까지 img태그 뽑아내고 아래는 http로 저장될 구문을 뽑아낸다 */
 		String getContent_Save = pic_OrgUrl;
@@ -134,14 +134,14 @@ public class PicController {
 	
 	@RequestMapping("/picboard/picboarddetail")
 	public ModelAndView getData(PicDto dto, HttpServletRequest request){
-		int cont_id=Integer.parseInt(request.getParameter("num"));
+		int cont_id=Integer.parseInt(request.getParameter("cont_id"));
 
 		dto.setCont_id(cont_id);
 		
 		ModelAndView mView=picService.getPicdetail(dto);
 		
 		mView.setViewName("picboard/picboarddetail");
-		String id=(String)request.getSession().getAttribute("id");
+		String id=(String)request.getSession().getAttribute("writer");
 
 		if(id==null){
 			mView.addObject("isLogin", false);
@@ -150,21 +150,24 @@ public class PicController {
 		}
 
 		picService.increaseViewCount(dto.getCont_id());
+		mView.addObject("cont_id",cont_id);
 		//리턴해준다.
 		return mView;
 	}
 	
 	@RequestMapping("/picboard/picboardupdateform")
 	public ModelAndView privateUpdateform(HttpServletRequest request,@ModelAttribute PicDto dto){
+		int cont_id=Integer.parseInt(request.getParameter("cont_id"));
 		ModelAndView mView=picService.getPicdetail(dto);
 		mView.setViewName("picboard/picboardupdateform");
+		mView.addObject("cont_id",cont_id);
 		return mView;
 	}
 	
-	@RequestMapping("/picboard/update")
+	@RequestMapping("/picboard/picboardupdate")
 	public ModelAndView idCheckUpdate(HttpServletRequest request,@ModelAttribute PicDto dto){
 		int cont_id=Integer.parseInt(request.getParameter("cont_id"));
-		String content_content=request.getParameter("ckValue");
+		String content_content=request.getParameter("ckContent");
 		
 		dto.setContent_content(content_content);
 		dto.setCont_id(cont_id);

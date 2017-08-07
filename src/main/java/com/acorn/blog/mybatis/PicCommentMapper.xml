@@ -4,23 +4,23 @@
 
 	<select id="getList" parameterType="int"
 		resultType="picCommentDto">
-		SELECT num, writer, content, target_id, ref_group, comment_group,
-		regdate
-		FROM board_cafe_comment
+		SELECT num, user_id, writer, content, ref_group, comment_group,
+		regdate, profile_img
+		FROM tp_picboard_comment
 		WHERE ref_group=#{num}
 		ORDER BY comment_group ASC, num ASC			
 	</select>
 	<!-- 덧글의 번호를 리턴해주기 위해 -->
 	<select id="getSequence" resultType="int">
-		SELECT board_cafe_seq.NEXTVAL
+		SELECT tp_picboard_comment_seq.NEXTVAL
 		FROM DUAL
 	</select>
 	<insert id="insert" parameterType="picCommentDto">
 		INSERT INTO board_cafe_comment
-		(num, writer, content, target_id, ref_group, comment_group,
-		regdate)
-		VALUES(#{num}, #{writer}, #{content},
-		#{target_id}, #{ref_group}, #{comment_group}, SYSDATE)
+		(num, user_id, writer, content, ref_group, comment_group,
+		regdate, profile_img)
+		VALUES(#{num}, #{user_id}, #{writer}, #{content},
+			   #{ref_group}, #{comment_group}, SYSDATE, #{profile_img})
 	</insert>
 </mapper>
 
