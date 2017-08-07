@@ -32,6 +32,48 @@
 		</c:if>
 	</tbody>
 </table>
+<ul class="pagination" style="text-align: center">
+					<c:choose>
+						<c:when test="${startPageNum ne 1 }">
+							<li>
+								<a href="list.do?pageNum=${startPageNum-1 }" class="button">Prev</a>
+							</li>
+						</c:when>
+						<c:otherwise>
+							<li>
+								<a class="button disabled">Prev</a>
+							</li>							
+						</c:otherwise>					
+					</c:choose>	
+					
+					<c:forEach var="i" begin="${startPageNum}" end="${endPageNum}">
+						<c:choose>
+							<c:when test="${i eq pageNum}">
+								<li>
+									<a class="page active"
+										href="list.do?pageNum=${i}">${i}</a>
+								</li>
+							</c:when>
+							<c:otherwise>
+								<li>
+									<a class="page"
+										href="list.do?pageNum=${i}">${i}</a>
+								</li>
+							</c:otherwise>
+						</c:choose>						
+					</c:forEach>
+					<c:choose>
+						<c:when test="${endPageNum lt totalPageCount }">
+							<li>
+								<a href="list.do?pageNum=${endPageNum+1 }" class="button">Next</a>
+							</li>
+							
+						</c:when>
+						<c:otherwise>
+							<a class="button disabled">Next</a>
+						</c:otherwise>
+					</c:choose>	
+					</ul>
 <c:choose>
 <c:when test="${empty writernamedto.name}">
 	<script>

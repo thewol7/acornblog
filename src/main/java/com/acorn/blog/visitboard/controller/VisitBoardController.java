@@ -21,12 +21,12 @@ public class VisitBoardController {
 	private VisitBoardService visitboardService;
 	
 	@RequestMapping("/visitboard/list")
-	public ModelAndView controllist(HttpSession session){
+	public ModelAndView controllist(HttpSession session,HttpServletRequest request){
 		int session_id=(Integer)session.getAttribute("id");
 		int page_id=(Integer)session.getAttribute("page_id");	
 		//서비스를 이용해서 글목록이 담긴 ModelAndView 객체를 리턴받는다.
 		
-		ModelAndView mView=visitboardService.list(page_id,session_id);
+		ModelAndView mView=visitboardService.list(page_id,session_id,request);
 		//view 페이지 설정하고
 		mView.setViewName("visitboard/list");
 		//ModelAdnView 객체를 리턴해준다.		

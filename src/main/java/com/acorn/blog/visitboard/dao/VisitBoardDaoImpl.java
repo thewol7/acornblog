@@ -26,8 +26,8 @@ public class VisitBoardDaoImpl implements VisitBoardDao{
 	}
 
 	@Override
-	public List<VisitBoardDto> getList(int page_id) {		
-		return session.selectList("visitboard.getList",page_id);
+	public List<VisitBoardDto> getList(VisitBoardDto dto) {		
+		return session.selectList("visitboard.getList",dto);
 	}
 
 	@Override
@@ -41,11 +41,12 @@ public class VisitBoardDaoImpl implements VisitBoardDao{
 		
 		return session.selectOne("visitboard.getWriterName",session_id);
 	}
-
+	
 	@Override
-	public int getMaxpage(int page_id) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getMaxpage(int page_id){		
+		int count=0;
+			count=session.selectOne("visitboard.getMaxpage",page_id);
+		return count;
 	}
 
 }
