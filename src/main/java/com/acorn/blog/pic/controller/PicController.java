@@ -1,5 +1,8 @@
 package com.acorn.blog.pic.controller;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -95,9 +98,35 @@ public class PicController {
 	}
 	
 	@RequestMapping("/picboard/picboardwrite")
-	public String idCheckInsert(HttpSession session, @ModelAttribute PicDto dto){
-		int user_id=(Integer)session.getAttribute("id");
-		dto.setUser_id(user_id);
+	public String idCheckInsert(HttpServletRequest request,@ModelAttribute PicDto dto){
+		// 글쓰기 저장 동작
+		String content = (String) request.getParameter("ckValue");
+
+		/*------추출한 content에서 http 속성을 추출해서 저장하는 부분-------*/
+		// 정규식은 http://로 시작해서 * 모든문자 (숫자/)로 끝나는 문자 패턴 http://.*([0-9a-zA-Z]/)
+		Pattern patternImg = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>");
+		Pattern patternHttp = Pattern.compile("http://.*([0-9a-zA-Z]/)");
+		String getContent_Org = content;
+
+		Matcher matchOrg = patternImg.matcher(getContent_Org);
+		System.out.println("matchOrg: " + matchOrg);
+		String pic_OrgUrl = null;
+		if (matchOrg.find()) { // 이미지 태그를 찾았다면,,
+			pic_OrgUrl = matchOrg.group(0); // 글 내용 중에 첫번째 이미지 태그를 뽑아옴.
+		}
+		System.out.println("pic OrgUrl 추출 완료");
+
+		/* 여기까지 img태그 뽑아내고 아래는 http로 저장될 구문을 뽑아낸다 */
+		String getContent_Save = pic_OrgUrl;
+		Matcher matchSave = patternHttp.matcher(getContent_Save);
+		String pic_SaveUrl = null;
+		if (matchSave.find()) {
+			pic_SaveUrl = matchSave.group(0);
+		}
+		/*---------------------------------------------------------------*/
+		dto.setContent_content(content);
+		dto.setUser_id((Integer)request.getSession().getAttribute("id"));
+		dto.setPic(pic_SaveUrl);
 		picService.insertPics(dto);
 		
 		return "redirect:/picboard/picboardlist.do";
@@ -105,18 +134,15 @@ public class PicController {
 	
 	@RequestMapping("/picboard/picboarddetail")
 	public ModelAndView getData(PicDto dto, HttpServletRequest request){
-		//1. 파라미터로 전달되는 글번호를 읽어온다.
 		int cont_id=Integer.parseInt(request.getParameter("num"));
 
-		//글번호도 dto 에 담는다.
 		dto.setCont_id(cont_id);
 		
-		//2. Dao 를 이용해서 글정보를 얻어온다.
 		ModelAndView mView=picService.getPicdetail(dto);
 		
 		mView.setViewName("picboard/picboarddetail");
 		String id=(String)request.getSession().getAttribute("id");
-		//로그인 했는지 여부도 ModelAndView 객체에 담아서
+
 		if(id==null){
 			mView.addObject("isLogin", false);
 		}else{
@@ -136,14 +162,18 @@ public class PicController {
 	}
 	
 	@RequestMapping("/picboard/update")
-	public String idCheckUpdate(HttpSession session,@ModelAttribute PicDto dto){
-		//글 작성자는 세션에서 얻어내서
-		int user_id=(Integer)session.getAttribute("id");
-		//Dto 에 담고
-		dto.setUser_id(user_id);
-		//서비스 객체를 이용해서 수정 반영한다.
+	public ModelAndView idCheckUpdate(HttpServletRequest request,@ModelAttribute PicDto dto){
+		int cont_id=Integer.parseInt(request.getParameter("cont_id"));
+		String content_content=request.getParameter("ckValue");
+		
+		dto.setContent_content(content_content);
+		dto.setCont_id(cont_id);
 		picService.updatePics(dto);
-		return "redirect:/picboard/picboardlist.do";
+		
+		ModelAndView mView=new ModelAndView();
+		mView.addObject("cont_id", cont_id);
+		mView.setViewName("picboard/picboarddetail");
+		return mView;
 	}
 	
 	@RequestMapping("/picboard/delete")
