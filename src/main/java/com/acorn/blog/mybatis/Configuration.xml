@@ -13,6 +13,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		
 		<mapper resource="com/acorn/blog/mybatis/MainMapper.xml"/>
 		<mapper resource="com/acorn/blog/mybatis/VisitBoardMapper.xml"/>
+		<mapper resource="com/acorn/blog/mybatis/UsersMapper.xml"/>
 		
 	</mappers>	
 </configuration>

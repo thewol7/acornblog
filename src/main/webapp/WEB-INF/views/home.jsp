@@ -11,6 +11,28 @@
 <h3>인덱스 페이지 입니다.</h3>
 
 <h3>공지 사항 입니다.</h3>
+<c:choose>
+	<c:when test="${empty id }">
+		<div>
+			<a href="users/signin_form.do?url=${pageContext.request.contextPath }">로그인</a>
+			<a href="users/signup_form.do">회원가입</a>
+		</div>
+	</c:when>
+	<c:otherwise>
+		<div>
+			<strong><a href="users/info.do">${id }</a></strong> 님 로그인중 ...
+			<a href="users/signout.do">로그아웃</a>
+		</div>
+	</c:otherwise>
+</c:choose>
+
+<ul>
+	<li><a href="visitboard/list.do">방명록</a></li>
+</ul>
+
+<ul>
+	<li><a href="session.do">세션넣기</a></li>
+</ul>
 
 </body>
 </html>

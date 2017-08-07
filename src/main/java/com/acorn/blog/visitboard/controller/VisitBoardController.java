@@ -25,9 +25,11 @@ public class VisitBoardController {
 		int session_id=(Integer)session.getAttribute("id");
 		int page_id=(Integer)session.getAttribute("page_id");	
 		//서비스를 이용해서 글목록이 담긴 ModelAndView 객체를 리턴받는다.
+		System.out.println(session_id);
+		System.out.println(page_id);
 		ModelAndView mView=visitboardService.list(page_id,session_id);
 		//view 페이지 설정하고
-		mView.setViewName("cafe/list");
+		mView.setViewName("visitboard/list");
 		//ModelAdnView 객체를 리턴해준다.		
 		return mView;
 		
@@ -35,15 +37,15 @@ public class VisitBoardController {
 	@RequestMapping("/visitboard/insert")
 	public String insert(HttpServletRequest request){
 		VisitBoardDto dto =new VisitBoardDto();
-		dto.setCont_id(Integer.parseInt(request.getParameter("content")));
+		dto.setContent(request.getParameter("content"));
 		dto.setUser_id((Integer)request.getSession().getAttribute("page_id"));
 		dto.setWriter_id((Integer)request.getSession().getAttribute("id"));
 		visitboardService.insert(dto);
-		return "redirect:visitboard/list.do";
+		return "redirect:list.do";
 	}
 	@RequestMapping("/visitboard/delete")
 	public String delete(@RequestParam int cont_id){
 		visitboardService.delete(cont_id);
-		return "redirect:visitboard/list.do";
+		return "redirect:list.do";
 	}
 }

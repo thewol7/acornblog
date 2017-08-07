@@ -29,7 +29,7 @@ public class VisitBoardServiceImpl implements VisitBoardService{
 
 	@Override
 	public ModelAndView list(int page_id,int session_id) {		
-		List<VisitBoardDto> list = visitboardDao.getList();
+		List<VisitBoardDto> list = visitboardDao.getList(page_id);
 		VisitBoardDto writernamedto=visitboardDao.getWriterName(session_id);
 		VisitBoardDto hostnamedto=visitboardDao.getHostName(page_id);
 		ModelAndView mView= new ModelAndView();

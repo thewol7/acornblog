@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="visitboard">
 	<insert id="insert" parameterType="visitboardDto">
-	INSERT INTO tp_visboard VALUES(#{user_id},#{wrtier_id},tp_visboard_seq.NEXTVAL,#{content},SYSDATE)
+	INSERT INTO tp_visboard VALUES(#{user_id},#{writer_id},tp_visboard_seq.NEXTVAL,#{content},SYSDATE)
 	</insert>
 	<delete id="delete" parameterType="int">
 	DELETE FROM TP_VISBOARD WHERE cont_id = #{cont_id}
 	</delete>
-	<select id="getList">
+	<select id="getList" parameterType="int" resultType="visitboardDto">
 	SELECT a.user_id,v.writer_id,cont_id,content,TO_CHAR(content_date,'YYYY.MM.DD HH24:MI')AS content_date,name
 					FROM TP_VISBOARD v
 					JOIN TP_ACCOUNT a ON(a.user_id = v.writer_id)

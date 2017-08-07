@@ -26,8 +26,8 @@ public class VisitBoardDaoImpl implements VisitBoardDao{
 	}
 
 	@Override
-	public List<VisitBoardDto> getList() {		
-		return session.selectList("visitboard.getList");
+	public List<VisitBoardDto> getList(int page_id) {		
+		return session.selectList("visitboard.getList",page_id);
 	}
 
 	@Override

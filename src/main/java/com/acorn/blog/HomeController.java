@@ -26,6 +26,14 @@ public class HomeController {
 		mView.setViewName("home");
 		return mView;
 	}
+	@RequestMapping("/session.do")
+		public ModelAndView session(){
+			
+			ModelAndView mView=new ModelAndView();
+		
+			mView.setViewName("session");
+			return mView;
+	}
 }
 
 
