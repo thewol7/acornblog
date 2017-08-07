@@ -25,8 +25,7 @@ public class VisitBoardController {
 		int session_id=(Integer)session.getAttribute("id");
 		int page_id=(Integer)session.getAttribute("page_id");	
 		//서비스를 이용해서 글목록이 담긴 ModelAndView 객체를 리턴받는다.
-		System.out.println(session_id);
-		System.out.println(page_id);
+		
 		ModelAndView mView=visitboardService.list(page_id,session_id);
 		//view 페이지 설정하고
 		mView.setViewName("visitboard/list");
