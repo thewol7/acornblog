@@ -179,9 +179,9 @@ public class PicController {
 		return mView;
 	}
 	
-	@RequestMapping("/picboard/delete")
-	public String idCheckDelete(HttpSession session,@RequestParam int num){
-		picService.deletePics(num);
+	@RequestMapping("/picboard/picboarddelete")
+	public String idCheckDelete(HttpSession session,@RequestParam int cont_id){
+		picService.deletePics(cont_id);
 		return "redirect:/picboard/picboardlist.do";
 	}
 }

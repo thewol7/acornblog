@@ -79,7 +79,7 @@
 				<form method="post" action="${pageContext.request.contextPath}/picboard/picboardupdate.do?cont_id=${cont_id}">
 					<div class="row uniform">
 						<div class="12u 12u$(xsmall)">
-							<input type="text" name="title" id="title" value="${dto.content_title}"
+							<input type="text" name="content_title" id="title" value="${dto.content_title}"
 								placeholder="제목" maxlength="50"/>
 						</div>
 						<!-- Break -->
