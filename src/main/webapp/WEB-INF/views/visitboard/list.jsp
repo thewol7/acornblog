@@ -93,11 +93,21 @@
 </c:when>
 <c:otherwise>
 <form action="insert.do" method="post">
-${writernamedto.name}<input type="text" name="content"/>
-<button type="submit">등록</button>
+${writernamedto.name}<input type="text" name="content" id="content"/>
+<button type="submit" id="contentBtn">등록</button>
 </form>
 </c:otherwise>	
 
 </c:choose>
+<script>
+$("contentBtn").on("submit",function(){
+	if($("#content").val()==null){
+		alert("내용쓰세요");
+		return false;
+	}
+	
+})
+
+</script>
 </body>
 </html>
