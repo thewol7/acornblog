@@ -6,6 +6,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>views/visitboard/list.jsp</title>
+<jsp:include page="/resources/resources.jsp"></jsp:include>
+<style>
+	.page_display a{
+		text-decoration:none;
+		color:#000;
+	}
+	.page_display a.active{
+		font-weight:bold;
+		color:red;
+		text-decoration:underline;
+	}
+	.page_display a.muted{
+		color:#cecece
+	}
+
+</style>
 </head>
 <body>
 <h3>${hostnamedto.name}님의 페이지</h3>
@@ -32,48 +48,39 @@
 		</c:if>
 	</tbody>
 </table>
-<ul class="pagination" style="text-align: center">
-					<c:choose>
-						<c:when test="${startPageNum ne 1 }">
-							<li>
-								<a href="list.do?pageNum=${startPageNum-1 }" class="button">Prev</a>
-							</li>
-						</c:when>
-						<c:otherwise>
-							<li>
-								<a class="button disabled">Prev</a>
-							</li>							
-						</c:otherwise>					
-					</c:choose>	
-					
-					<c:forEach var="i" begin="${startPageNum}" end="${endPageNum}">
-						<c:choose>
-							<c:when test="${i eq pageNum}">
-								<li>
-									<a class="page active"
-										href="list.do?pageNum=${i}">${i}</a>
-								</li>
-							</c:when>
-							<c:otherwise>
-								<li>
-									<a class="page"
-										href="list.do?pageNum=${i}">${i}</a>
-								</li>
-							</c:otherwise>
-						</c:choose>						
-					</c:forEach>
-					<c:choose>
-						<c:when test="${endPageNum lt totalPageCount }">
-							<li>
-								<a href="list.do?pageNum=${endPageNum+1 }" class="button">Next</a>
-							</li>
-							
-						</c:when>
-						<c:otherwise>
-							<a class="button disabled">Next</a>
-						</c:otherwise>
-					</c:choose>	
-					</ul>
+<div class="page_display">
+<ul class="paging">
+	<c:choose>
+		<c:when test="${startPageNum ne 1 }"><!-- 보는페이지가 1페이지이아니면( not equals) -->
+			<li><a class="navbtn prev" href="list.do?pageNum=${startPageNum-1 }">이전</a></li>
+		</c:when>
+		<c:otherwise>
+			<li><a class="navbtn disabled" href="javascript:">이전</a> <!-- 1이면 mute(가림) --></li>
+		</c:otherwise>
+	</c:choose>
+
+	<c:forEach var="i" begin="${startPageNum }" end="${endPageNum }">
+		<c:choose>
+			<c:when test="${i eq pageNum }">
+				<li><span>${i }</span></li>
+				<!-- <a  class="active" href="list.do?pageNum=${i }">${i }</a> -->
+			</c:when>
+			<c:otherwise>
+				<a href="list.do?pageNum=${i }">${i }</a>
+			</c:otherwise>
+		</c:choose>
+	</c:forEach>
+	<c:choose>
+		<c:when test="${endPageNum lt totalPageCount }">
+			<li><a class="navbtn next" href="list.do?pageNum=${endPageNum+1 }">다음</a></li>
+		</c:when>
+		<c:otherwise>
+			<li><a class="navbtn disabled" href="javascript:">다음</a></li>
+		</c:otherwise>
+	</c:choose>
+</ul>
+</div>
+
 <c:choose>
 <c:when test="${empty writernamedto.name}">
 	<script>
@@ -90,6 +97,7 @@ ${writernamedto.name}<input type="text" name="content"/>
 <button type="submit">등록</button>
 </form>
 </c:otherwise>	
+
 </c:choose>
 </body>
 </html>
