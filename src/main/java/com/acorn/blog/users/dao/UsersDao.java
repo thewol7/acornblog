@@ -8,5 +8,6 @@ public interface UsersDao {
 	public UsersDto getRandomPage();
 	public void signup(UsersDto dto);
 	public boolean idCheck(String id);
+	public void update(UsersDto dto);
 	
 }

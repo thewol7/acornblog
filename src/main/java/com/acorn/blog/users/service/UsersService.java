@@ -9,4 +9,6 @@ import com.acorn.blog.users.dto.UsersDto;
 public interface UsersService {
 	public ModelAndView signin(UsersDto dto, HttpServletRequest request);
 	public ModelAndView signup(UsersDto dto, HttpServletRequest request);
+	public boolean idCheck(String inputId);
+	public void update(UsersDto dto, HttpServletRequest request);
 }

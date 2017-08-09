@@ -31,7 +31,7 @@
 	    	<li class="dropdown-toggle"><a href="javascript:">MY PAGE</a></li>
 		      <ul class="dropdown-menu">
 		        <li><a href="javascript:">내 블로그</a></li>
-		        <li><a href="javascript:">개인정보 관리</a></li>
+		        <li><a href="users/info.do">개인정보 관리</a></li>
 		        <li><a href="javascript:">설정</a></li>
 		      </ul>
 	    	<a href="users/signout.do?url=${pageContext.request.contextPath }">로그아웃-로그인된계정test(${session.name })</a>
