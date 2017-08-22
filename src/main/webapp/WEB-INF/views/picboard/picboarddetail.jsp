@@ -159,7 +159,7 @@
 					<textarea rows="5" disabled>${tmp.content}</textarea><br/>
 					<form action="comment_insert.do" method="post">
 						<!-- 덧글 작성자 -->
-						<input type="hidden" name="writer" value="${id}"/>
+						<input type="hidden" name="writer" value="${info.name}"/>
 						<!-- 덧글 그룹 -->
 						<input type="hidden" name="ref_group" value="${dto.num}" />
 						<input type="hidden" name="comment_group" value="${tmp.comment_group}" />

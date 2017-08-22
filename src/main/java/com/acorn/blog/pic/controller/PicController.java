@@ -98,7 +98,7 @@ public class PicController {
 	}
 	
 	@RequestMapping("/picboard/picboardwrite")
-	public String idCheckInsert(HttpServletRequest request,@ModelAttribute PicDto dto){
+	public String privateInsert(HttpServletRequest request,@ModelAttribute PicDto dto){
 		// 글쓰기 저장 동작
 		String content = (String) request.getParameter("ckValue");
 		/*------추출한 content에서 http 속성을 추출해서 저장하는 부분-------*/

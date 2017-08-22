@@ -26,8 +26,7 @@ public class LoginAspect {
 				}
 			}
 		}
-		
-		
+			
 		if(isLogin){//로그인을 했으면
 			//Aop 가 적용된 메소드를 수행하고
 			Object obj=joinPoint.proceed();
@@ -79,7 +78,7 @@ public class LoginAspect {
 				String cPath=request.getContextPath();
 				//확인을 눌렀을때 리다일렉트 이동할 url 주소를 구성한다. 
 				String redirectUrl=cPath+
-						"/users/loginform.do?url="+url;
+						"/users/signin_form.do?url="+url;
 				mView.addObject("redirectUrl", redirectUrl);
 			}
 		}

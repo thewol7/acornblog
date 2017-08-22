@@ -10,7 +10,7 @@
 	<select id="getList" resultType="picDto" parameterType="picDto">
 	SELECT *	
 		FROM (SELECT result1.*,ROWNUM rnum 
-		  FROM (SELECT <include refid="imgColumns"/>
+		  FROM (SELECT <include refid="imgColumns"/>,name
 				FROM tp_picboard
 				JOIN tp_account USING(user_id)
 			    ORDER BY cont_id DESC
@@ -28,7 +28,7 @@
 	<select id="getPicDetail" parameterType="picDto" resultType="picDto">
 		SELECT result1.*
 		FROM
-			(SELECT <include refid="imgColumns"/>,
+			(SELECT <include refid="imgColumns"/>,name,
 			LAG(cont_id,1,0) OVER(ORDER BY cont_id DESC) prevNum,
 			LEAD(cont_id,1,0) OVER(ORDER BY cont_id DESC) nextNum
 			FROM tp_picboard
