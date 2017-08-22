@@ -1,17 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
-<!doctype html>
-<html lang="en">
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Acorn Blog - HOME</title>
-	<jsp:include page="/resources/resources.jsp"></jsp:include>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>views/home.jsp</title>
 </head>
 <body>
+<!--<<<<<<< HEAD
+<h3>인덱스 페이지 입니다.</h3>
+
+<h3>공지 사항 입니다.</h3>
+
+
+<ul>
+	<li><a href="visitboard/list.do">방명록</a></li>
+</ul>
+
+<ul>
+	<li><a href="session.do">세션넣기</a></li>
+</ul>
+
+=======  -->
 <jsp:include page="/resources/nav.jsp"></jsp:include>
 <div class="content">
 	<h3>aaa님의 페이지입니다.</h3>
@@ -176,5 +187,12 @@
     </tbody>
   </table>
 </div>
+
 </body>
 </html>
+
+
+
+
+
+

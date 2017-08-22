@@ -19,7 +19,7 @@
       <ul class="dropdown-menu">
         <li><a href="board.html">PRIVATE BOARD</a></li>
         <li><a href="javascript:">PICTURE BOARD</a></li>
-        <li><a href="javascript:">VISIT BOARD</a></li>
+        <li><a href="visitboard/list.do">VISIT BOARD</a></li>
       </ul>
     <li><a href="javascript:">OTHERS</a></li>
       <c:choose>
@@ -65,7 +65,7 @@
 	    	<a href="users/signout.do?url=${pageContext.request.contextPath }">로그아웃- 로그인된계정test(${session.name })</a>
 	    </c:otherwise>
       </c:choose>
-  
+
   <a class="collapsebox" href="javascript:collapse()">
     <div class="bar"></div>
   </a>
