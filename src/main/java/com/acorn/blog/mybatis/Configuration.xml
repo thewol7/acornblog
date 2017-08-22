@@ -6,6 +6,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
 	<typeAliases>
 		 <typeAlias type="com.acorn.blog.board.dto.PriBoardDto" alias="PriDto" />
+		<typeAlias type="com.acorn.blog.board.dto.PriBoardCommentDto" alias="PriCommentDto"/>
 		 <typeAlias type="com.acorn.blog.visitboard.dto.VisitBoardDto" alias="visitboardDto"/>
 		 <typeAlias type="com.acorn.blog.users.dto.UsersDto" alias="usersDto"/>
 	</typeAliases>
@@ -27,11 +28,11 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	
 	<!-- sql 문을 정의하고 있는 xml 문서 -->
 	<mappers>
+		<mapper resource="com/acorn/blog/mybatis/PriBoardCommentMapper.xml"/>
 		<mapper resource="com/acorn/blog/mybatis/PriboardMapper.xml"/>
 		<mapper resource="com/acorn/blog/mybatis/VisitBoardMapper.xml"/>
 		<mapper resource="com/acorn/blog/mybatis/UsersMapper.xml"/>
 	</mappers>
-	
 </configuration>
 
 
