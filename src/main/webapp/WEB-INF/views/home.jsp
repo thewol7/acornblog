@@ -4,60 +4,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>acornblog</title>
-  <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/acornblog.min.css">
+  <jsp:include page="/resources/resources.jsp"></jsp:include>
+
 </head>
 <body>
-<div class="nav">
-  <div class="profile"><img src="${pageContext.request.contextPath }/resources/images/logo.png" /></div>
-  <div class="owner">aaa</div>
-  <ul>
-    <li><a href="javascript:">HOME</a></li>
-    <li class="dropdown-toggle"><a href="javascript:">BOARD</a></li>
-      <ul class="dropdown-menu">
-        <li><a href="javascript:">PRIVATE BOARD</a></li>
-        <li><a href="javascript:">PICTURE BOARD</a></li>
-        <li><a href="javascript:">VISIT BOARD</a></li>
-      </ul>
-    <li><a href="javascript:">OTHERS</a></li>
-    <li class="dropdown-toggle"><a href="javascript:">MY PAGE</a></li>
-      <ul class="dropdown-menu">
-        <li><a href="javascript:">내 블로그</a></li>
-        <li><a href="javascript:">개인정보 관리</a></li>
-        <li><a href="javascript:">설정</a></li>
-      </ul>
-    <li class="visible-lg"><a href="javascript:">로그인</a></li>
-    <li class="visible-lg"><a href="javascript:">회원가입</a></li>
-  </ul>
-</div>
-<div class="backdrop">
-  <ul>
-    <li><a href="javascript:">HOME</a></li>
-    <li><a href="javascript:">BOARD</a></li>
-    <li><a href="javascript:">OTHERS</a></li>
-    <li><a href="javascript:">MY PAGE</a></li>
-    <li><a href="javascript:">로그인</a></li>
-    <li><a href="javascript:">회원가입</a></li>
-  </ul>
-</div>
-<div class="rbox">
-  <h3>
-  <c:choose>
-  	<c:when test="${empty id }">
-  		<a href="users/signin_form.do?url=${pageContext.request.contextPath }">로그인</a> | <a href="users/signup_form.do">회원가입</a>
-  	</c:when>
-  	<c:otherwise>
-  		<a href="users/signout.do?url=${pageContext.request.contextPath }">로그아웃- 로그인된계정(${session.name })</a> | <a href="users/signup_form.do">회원가입</a>
-  	</c:otherwise>
-  </c:choose>
-  </h3>
-  <a class="collapsebox" href="javascript:collapse()">
-    <div class="bar"></div>
-  </a>
-</div>
+
+<jsp:include page="/resources/nav.jsp"></jsp:include>
 <div class="content">
   <h3>aaa님의 페이지입니다.</h3>
   <div class="divline"></div>
@@ -222,10 +179,11 @@
     </tbody>
   </table>
 </div>
-<script
-src="https://code.jquery.com/jquery-3.2.1.js"
-integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-crossorigin="anonymous"></script>
-<script src="${pageContext.request.contextPath }/resources/js/acornblog.js"></script>
 </body>
 </html>
+
+
+
+
+
+

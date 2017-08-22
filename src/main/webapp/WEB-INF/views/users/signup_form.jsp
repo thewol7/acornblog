@@ -45,15 +45,18 @@ div.uploadcare--progress, div.uploadcare--progress_type_canvas{
 .uploadcare--widget__button_type_cancel{
 	display:none;
 }
-
+.help-block{
+		display: none;
+	}
 </style>
 </head>
 <body>
 	<div class="container">
 		<h3>회원가입 폼입니다.</h3>
-		<form action="signup.do" method="post" class="signup_form" novalidate>
+		<form action="signup.do" method="post" id="signup_form" class="signup_form" novalidate>
 			<div class="">
-				<input type="text" name="id" placeholder="ID">
+				<input type="text" name="id" id="id" placeholder="ID">
+				<p class="help-block">사용할 수 없는 아이디 입니다.</p>
 			</div>
 			<div class="">
 				<input type="password" name="pwd" id="pwd" placeholder="PASSWORD">
@@ -68,7 +71,7 @@ div.uploadcare--progress, div.uploadcare--progress_type_canvas{
 				<input type="email" name="email" id="email" placeholder="EMAIL">
 			</div>
 			<div class="6u 12u$(xsmall) input-reform-bottom">
-				<input type="radio" name="gender" id="man" value="M">
+				<input type="radio" checked="checked" name="gender" id="man" value="M">
 				<label for="man">MAN</label>
 			</div>
 			<div class="6u 12u$(xsmall) input-reform-bottom">
@@ -78,7 +81,7 @@ div.uploadcare--progress, div.uploadcare--progress_type_canvas{
 			<div class="4u input-reform-bottom">
 				<div class="image-preview-single">
 					<image id="profileImage"
-						src="${pageContext.request.contextPath }/resources/images/icons/default.png" />
+						src="${pageContext.request.contextPath }/resources/images/default.png" />
 					<input type="hidden" role="uploadcare-uploader" data-clearable=""
 						data-images-only="">
 					<input type="hidden" name="photo_value" id="photo_value" value="" />
@@ -105,41 +108,68 @@ div.uploadcare--progress, div.uploadcare--progress_type_canvas{
 		</form>
 	</div>
 	<script
-		src="${pageContext.request.contextPath }/resources/js/jquery-3.2.0.js"></script>
+		src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.min.js"></script>
 	<script>
-		//아이디 입력란에 keyup 이벤트가 발생했을때 실행할 함수 등록 
-		$("#id").on("keyup",function() {
-					//입력한 아이디 읽어오기
-					var inputId = $("#id").val();
-					//ajax 요청을 이용해서 서버에 전송
-					$.ajax({
-						url : "checkid.do",
-						method : "get",
-						data : {
-							inputId : inputId
-						},
-
-						success : function(data) {
-							console.log(data);
-							$("#id").parent().removeClass(
-									"has-success has-error");
-							if (data.canUse) {
-								$("#id").parent().addClass("has-success").find(
-										".help-block").hide().parent().find(
-										".glyphicon").removeClass(
-										"glyphicon-remove").addClass(
-										"glyphicon-ok");
-							} else {
-								$("#id").parent().addClass("has-error").find(
-										".help-block").show().parent().find(
-										".glyphicon").removeClass(
-										"glyphicon-ok").addClass(
-										"glyphicon-remove");
-							}
-						}
-					});
-				});
+	//아이디 입력란에 keyup 이벤트가 발생했을때 실행할 함수 등록 
+	$("#id").on("keyup", function(){
+		//입력한 아이디 읽어오기
+		var inputId=$("#id").val();
+		//ajax 요청을 이용해서 서버에 전송
+		$.ajax({
+			url:"idCheck.do",
+			method:"get",
+			data:{inputId:inputId},
+			
+			success:function(data){
+				console.log(data);
+				if(data.canUse){
+					$("#id")
+					.parent()					
+					.find(".help-block")
+					.hide()					
+				}else{
+					$("#id")
+					.parent()					
+					.find(".help-block")
+					.show()					
+				}
+			}
+		});
+	});
 		
+	$(".signup_form").submit(function(){
+		var id=$("#id").val();
+		var pwd=$("#pwd").val();
+		var name=$("#name").val();
+		var phone=$("#phone").val();
+		var email=$("#email").val();
+		var gender=$("#gender").val(); // M or F
+		if(id == ''){
+			alert("아이디를 입력해주세요");
+			return false;
+		}
+		if(pwd == ''){
+			alert("비밀번호를 입력해주세요");
+			return false;
+		}
+		if(name == ''){
+			alert("이름을 입력해주세요");
+			return false;
+		}
+		if(phone == ''){
+			alert("휴대폰번호를 입력해주세요");
+			return false;
+		}
+		if(email == ''){
+			alert("이메일을 입력해주세요");
+			return false;
+		}
+		if(gender == ''){
+			alert("성별을 선택해주세요");
+			return false;
+		}
+	});
+				
 		/* 이미지 선택시 숨어있는 uploadcare 버튼이 팝업되게 연결 */
 		$("#profileImage").click(function(e){
 			$(".uploadcare--widget__button_type_open").click();

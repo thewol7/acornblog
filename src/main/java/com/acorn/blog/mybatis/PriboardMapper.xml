@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="priboard">
+	<!-- 자주 사용하는 sql 문을 미리 정의 해 놓기 -->
+	<sql id="PriColumns">
+		num,writer,title,content,viewCount,
+		TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate
+	</sql>
+	<select id="getList" resultType="PriDto" parameterType="PriDto">
+		SELECT *
+		FROM (SELECT result1.*,ROWNUM rnum 
+		  FROM (SELECT num,writer,title,content,viewCount,regdate 
+				FROM tp_priboard
+			    ORDER BY num DESC
+			    ) result1
+	     )
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
+	</select>
+	
+	<insert id="insert" parameterType="PriDto">
+		INSERT INTO tp_priboard 
+		(num, writer, title, content, viewCount, regdate) 
+		VALUES(tp_priboard_seq.NEXTVAL, 
+		#{writer}, #{title}, #{content}, #{viewCount}, SYSDATE)
+	</insert>
+	
+	<!-- 조회수  1 증가 시키기 -->
+	<update id="increaseViewCount" parameterType="int">
+		UPDATE tp_priboard
+		SET viewCount = viewCount+1
+		WHERE num=#{num}
+	</update>
+	
+	<!-- 글정보 얻어오기 -->
+	<select id="getData" parameterType="int" 
+		resultType="PriDto">
+		SELECT <include refid="PriColumns"/>
+		FROM tp_priboard
+		WHERE num=#{num}	
+	</select>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM tp_priboard
+		WHERE num=#{num}
+	</delete>	
+	
+	<update id="update" parameterType="PriDto">
+		UPDATE tp_priboard 
+		SET title=#{title}, content=#{content}
+		WHERE num=#{num}
+	</update>
+	<select id="getCount" resultType="int">
+		SELECT NVL(MAX(ROWNUM), 0)
+		FROM tp_priboard
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
