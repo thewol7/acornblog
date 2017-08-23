@@ -74,7 +74,7 @@
 <div class="page_display">
 <ul class="paging">
 	<c:choose>
-		<c:when test="${startPageNum ne 1 }"><!-- 보는페이지가 1페이지이아니면( not equals) -->
+		<c:when test="${startPageNum ne 1 }"><!-- 보는페이지가 1페이지이아니면(not equals) -->
 			<li><a class="navbtn prev" href="list.do?pageNum=${startPageNum-1 }">이전</a></li>
 		</c:when>
 		<c:otherwise>
