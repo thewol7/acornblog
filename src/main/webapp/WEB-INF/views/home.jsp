@@ -1,31 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
-<!doctype html>
-<html lang="en">
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Acorn Blog - HOME</title>
-	<jsp:include page="/resources/resources.jsp"></jsp:include>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>acornblog</title>
+  <jsp:include page="/resources/resources.jsp"></jsp:include>
+
 </head>
 <body>
+
 <jsp:include page="/resources/nav.jsp"></jsp:include>
 <div class="content">
-	<h3>aaa님의 페이지입니다.</h3>
+  <h3>aaa님의 페이지입니다.</h3>
   <div class="divline"></div>
   <div class="main-profile">
-    <c:choose>
+  	<%-- ${info.profile_img } --%>
+  	<c:choose>
 	  	<c:when test="${empty info.profile_img }">
-	  		<img src="${pageContext.request.contextPath }/resources/images/default.png" /> 
+	  		<img src="${pageContext.request.contextPath }/resources/images/icons/default.png" /> 
 	  	</c:when>
 	  	<c:otherwise>
   			<img src="${info.profile_img }" />
   		</c:otherwise>
   	</c:choose>
-    <h4>이름: 페이지주인test(${info.name })</h4>
+    <h4>이름: 페이지주인(${info.name })</h4>
     <h4>성별: ${info.gender }</h4>
     <h4>이메일: ${info.email }</h4>
     <h4>등등등 </h4>
@@ -82,20 +85,20 @@
   <div class="divline"></div>
   <div class="pics">
     <div class="pic">
-      <a href="picboard/picboardlist.do" style="background-image:url(${pageContext.request.contextPath }/resources/images/img1.jpg);"></a>
-      <h3>사진의 제목</h3>
+      <a href="javascript:" style="background-image:url(${pageContext.request.contextPath }/resources/images/img1.jpg);"></a>
+      <h2>사진의 제목</h2>
     </div>
     <div class="pic">
-      <a href="javascript:" style="background-image:url(${pageContext.request.contextPath }/resources/images/img2.JPG);"></a>
-      <h3>이렇게 이쁘게</h3>
+      <a href="picboard/picboardlist.do" style="background-image:url(${pageContext.request.contextPath }/resources/images/img2.JPG);"></a>
+      <h2>이렇게 이쁘게</h2>
     </div>
     <div class="pic">
       <a href="javascript:" style="background-image:url(${pageContext.request.contextPath }/resources/images/img3.jpg);"></a>
-      <h3>뜨지롱</h3>
+      <h2>뜨지롱</h2>
     </div>
     <div class="pic">
       <a href="javascript:" style="background-image:url(${pageContext.request.contextPath }/resources/images/img4.jpg);"></a>
-      <h3>ㅎㅎ</h3>
+      <h2>ㅎㅎ</h2>
     </div>
   </div>
   <h3>최근 방명록</h3>
@@ -178,3 +181,9 @@
 </div>
 </body>
 </html>
+
+
+
+
+
+

@@ -20,8 +20,8 @@ public class LoginAspect {
 		for(Object tmp:args){
 			if(tmp instanceof HttpSession){
 				HttpSession session=(HttpSession)tmp;
-				String id=(String)session.getAttribute("id");
-				if(id!=null){
+				int id=(Integer)session.getAttribute("id");
+				if(id!=0){
 					isLogin=true;
 				}
 			}

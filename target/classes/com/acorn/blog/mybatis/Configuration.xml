@@ -3,20 +3,48 @@
 PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+
 	<typeAliases>
-		 <typeAlias type="com.acorn.blog.users.dto.UsersDto" alias="usersDto"/>
-		  <typeAlias type="com.acorn.blog.pic.dto.PicDto" alias="picDto"/>
-		  <typeAlias type="com.acorn.blog.pic.dto.PicCommentDto" alias="picCommentDto"/>
+		<typeAlias type="com.acorn.blog.users.dto.UsersDto" alias="usersDto"/>
+		<typeAlias alias="PriDto" type="com.acorn.blog.board.dto.PriBoardDto"/>
+		<typeAlias alias="PriCommentDto" type="com.acorn.blog.board.dto.PriBoardCommentDto"/>
+		<typeAlias type="com.acorn.blog.board.dto.PriBoardDto" alias="PriDto" />
+		<typeAlias type="com.acorn.blog.visitboard.dto.VisitBoardDto" alias="visitboardDto"/>
+		<typeAlias type="com.acorn.blog.users.dto.UsersDto" alias="usersDto"/>
+		<typeAlias type="com.acorn.blog.pic.dto.PicCommentDto" alias="picCommentDto"/>
+		<typeAlias type="com.acorn.blog.pic.dto.PicDto" alias="picDto"/>
 	</typeAliases>
 	
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="poolMaximumActiveConnections" value="30"/>
+				<property name="poolMaximumIdleConnections" value="30"/>
+				<property name="poolMaximumCheckoutTime" value="100000"/>
+				<property name="poolTimeToWait" value="100000"/>
+				<property name="poolPingConnectionsNotUsedFor" value="100000"/>
+				<property name="poolPingEnabled" value="true"/>
+				<property name="poolPingQuery" value="select 1"/>
+			</dataSource>		
+		</environment>
+	</environments>
+	
 	<!-- sql 문을 정의하고 있는 xml 문서 -->
-	<mappers>
-		<mapper resource="com/acorn/blog/mybatis/PicMapper.xml"/>
-		<mapper resource="com/acorn/blog/mybatis/UsersMapper.xml"/>
-		<mapper resource="com/acorn/blog/mybatis/PicCommentMapper.xml"/>
-	</mappers>	
-</configuration>
 
+	<mappers>
+		
+		<mapper resource="com/acorn/blog/mybatis/UsersMapper.xml"/>
+		<mapper resource="com/acorn/blog/mybatis/VisitBoardMapper.xml"/>
+		<mapper resource="com/acorn/blog/mybatis/UsersMapper.xml"/>
+		<mapper resource="com/acorn/blog/mybatis/PriboardCommentMapper.xml"/>
+		<mapper resource="com/acorn/blog/mybatis/PriboardMapper.xml"/>
+		<mapper resource="com/acorn/blog/mybatis/PicMapper.xml"/>
+		<mapper resource="com/acorn/blog/mybatis/PicCommentMapper.xml"/>
+	</mappers>
+	
+
+</configuration>
 
 
 

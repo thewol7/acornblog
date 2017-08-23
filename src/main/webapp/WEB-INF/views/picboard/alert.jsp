@@ -9,6 +9,6 @@
 </head>
 <body>
 	<p>${msg}</p>
-	<a href="${pageContext.request.contextPath}/views/picboard/imgboarddetail.do?cont_id=${cont_id}">확인</a>
+	<a href="${pageContext.request.contextPath}/picboard/picboarddetail.do?cont_id=${cont_id}">확인</a>
 </body>
 </html>

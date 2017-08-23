@@ -29,7 +29,7 @@ public class PicController {
 	
 	//덧글 입력 요청처리
 	@RequestMapping("/picboard/comment_insert")
-	public String commentInsert(@ModelAttribute PicCommentDto dto){
+	public String idCheckcommentInsert(@ModelAttribute PicCommentDto dto){
 		// @ModelAttribute 어노테이션을 이용해서 덧글정보를 얻어온다.
 		
 		//서비스 객체를 이용해서 덧글이 저장될 수 있도록 한다.
@@ -92,8 +92,10 @@ public class PicController {
 	
 	@RequestMapping("/picboard/picboardwriteform")
 	public ModelAndView privateInsertform(HttpServletRequest request){
+		String url=request.getRequestURI();
 		ModelAndView mView=new ModelAndView();
 		mView.setViewName("picboard/picboardwriteform");
+		mView.addObject("url",url);
 		return mView;
 	}
 	
@@ -135,7 +137,6 @@ public class PicController {
 	@RequestMapping("/picboard/picboarddetail")
 	public ModelAndView getData(PicDto dto, HttpServletRequest request){
 		int cont_id=Integer.parseInt(request.getParameter("cont_id"));
-
 		dto.setCont_id(cont_id);
 		
 		ModelAndView mView=picService.getPicdetail(dto);
@@ -165,23 +166,21 @@ public class PicController {
 	}
 	
 	@RequestMapping("/picboard/picboardupdate")
-	public ModelAndView idCheckUpdate(HttpServletRequest request,@ModelAttribute PicDto dto){
+	public String privateUpdate(HttpServletRequest request,@ModelAttribute PicDto dto){
 		int cont_id=Integer.parseInt(request.getParameter("cont_id"));
 		String content_content=request.getParameter("ckContent");
 		
 		dto.setContent_content(content_content);
+		dto.setUser_id((Integer)request.getSession().getAttribute("id"));
 		dto.setCont_id(cont_id);
 		picService.updatePics(dto);
 		
-		ModelAndView mView=new ModelAndView();
-		mView.addObject("cont_id", cont_id);
-		mView.setViewName("picboard/picboarddetail");
-		return mView;
+		return "redirect:/picboard/picboarddetail.do?cont_id="+cont_id;
 	}
 	
 	@RequestMapping("/picboard/picboarddelete")
 	public String idCheckDelete(HttpSession session,@RequestParam int cont_id){
 		picService.deletePics(cont_id);
-		return "redirect:/picboard/picboardlist.do";
+		return "alert";
 	}
 }

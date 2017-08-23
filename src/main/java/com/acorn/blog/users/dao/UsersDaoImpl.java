@@ -53,10 +53,15 @@ public class UsersDaoImpl implements UsersDao {
 	public boolean idCheck(String id) {
 		int result=session.selectOne("users.idcheck", id);
 		if(result>0){
-			return true;
-		}else{
 			return false;
+		}else{
+			return true;
 		}
+	}
+	
+	@Override
+	public void update(UsersDto dto) {
+		session.update("users.update", dto);
 	}
 
 }

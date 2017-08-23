@@ -8,6 +8,6 @@
 </head>
 <body>
 	<p>${msg}</p>
-	<a href="${pageContext.request.contextPath}/views/picboard/imgboardlist.do">확인</a>
+	<a href="${pageContext.request.contextPath}/picboard/picboardlist.do">확인</a>
 </body>
 </html>
