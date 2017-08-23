@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<table class="board-table"></table>
 </body>
 </html>
