@@ -6,7 +6,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
 	<typeAliases>
 		 <typeAlias type="com.acorn.blog.users.dto.UsersDto" alias="usersDto"/>
-
+		<typeAlias alias="PriDto" type="com.acorn.blog.board.dto.PriBoardDto"/>
+		<typeAlias alias="PriCommentDto" type="com.acorn.blog.board.dto.PriBoardCommentDto"/>
 
 	
 		 <typeAlias type="com.acorn.blog.board.dto.PriBoardDto" alias="PriDto" />
@@ -38,6 +39,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<!-- <mapper resource="com/acorn/blog/mybatis/MainMapper.xml"/> -->
 		<mapper resource="com/acorn/blog/mybatis/VisitBoardMapper.xml"/>
 		<mapper resource="com/acorn/blog/mybatis/UsersMapper.xml"/>
+		<mapper resource="com/acorn/blog/mybatis/PriboardCommentMapper.xml"/>
+		<mapper resource="com/acorn/blog/mybatis/PriboardMapper.xml"/>
 	</mappers>
 	
 

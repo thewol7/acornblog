@@ -26,25 +26,46 @@
 <body>
 <jsp:include page="/resources/nav.jsp"></jsp:include>
 <div class="content">
-<h3>${hostnamedto.name}님의 페이지</h3>
-<table>
+<h3>${hostnamedto.name}님의 방명록</h3>
+<div class="divline"></div>
+
+<c:choose>
+<c:when test="${empty writernamedto.name}">
+	<script>
+		if(confirm("로그인해야됨")){
+			location.href="list.do"
+		}else{
+			return false;
+		}
+	</script>
+</c:when>
+<c:otherwise>
+<form class="wform vform" action="insert.do" method="post">
+<h4>${writernamedto.name}: </h4><input class="wcon" type="text" name="content" id="content"/>
+<button class="submitbtn" type="submit" id="contentBtn">등록</button>
+</form>
+</c:otherwise>	
+
+</c:choose>
+
+<table class="board-table">
 	<thead>
 		<tr>
-			<th>작성자</th>
-			<th>내용</th>
-			<th>작성일</th>
-			<th>삭제</th>
+			<th><h4>작성자</h4></th>
+			<th><h4>내용</h4></th>
+			<th><h4>작성일</h4></th>
+			<th><h4>삭제</h4></th>
 		</tr>
 	</thead>
 	<tbody>
 		<c:if test="${not empty list}">
 		<c:forEach var = "tmp" items="${list}">
 			<tr>
-				<th>${tmp.name }</th>
-				<th>${tmp.content}</th>
-				<th>${tmp.content_date}</th>
+				<td><h4>${tmp.name }</h4></td>
+				<td><h4>${tmp.content}</h4></td>
+				<td><h4>${tmp.content_date}</h4></td>
 				<c:if test="${id == tmp.user_id}">
-				<th><a href="delete.do?cont_id=${tmp.cont_id } ">삭제</a></th></c:if>
+				<td><a class="delbtn" href="delete.do?cont_id=${tmp.cont_id } ">삭제</a></td></c:if>
 			</tr>	
 		</c:forEach>
 		</c:if>
@@ -83,24 +104,6 @@
 </ul>
 </div>
 
-<c:choose>
-<c:when test="${empty writernamedto.name}">
-	<script>
-		if(confirm("로그인해야됨")){
-			location.href="list.do"
-		}else{
-			return false;
-		}
-	</script>
-</c:when>
-<c:otherwise>
-<form action="insert.do" method="post">
-${writernamedto.name}<input type="text" name="content" id="content"/>
-<button type="submit" id="contentBtn">등록</button>
-</form>
-</c:otherwise>	
-
-</c:choose>
 </div>
 <script>
 $("contentBtn").on("submit",function(){
