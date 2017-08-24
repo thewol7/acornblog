@@ -44,6 +44,8 @@ public class PicController {
 	
 	@RequestMapping("/picboard/picboardlist")
 	public ModelAndView getList(HttpServletRequest request){
+		int user_id=(Integer)request.getSession().getAttribute("page_id");
+		System.out.println("user_id:"+user_id);
 		
 		//BoardDto 객체를 생성해서
 		PicDto dto=new PicDto();
@@ -61,7 +63,7 @@ public class PicController {
 		//보여줄 페이지 데이터의 끝 ResultSet row 번호
 		int endRowNum=pageNum*PAGE_ROW_COUNT;
 		//전체 row 의 갯수를 DB 에서 얻어온다.
-		int totalRow = picService.getCount();
+		int totalRow = picService.getCount(user_id);
 		//전체 페이지의 갯수 구하기
 		int totalPageCount=
 				(int)Math.ceil(totalRow/(double)PAGE_ROW_COUNT);
@@ -78,13 +80,14 @@ public class PicController {
 		//시작 row 번호와 끝 row 번호를 dto 에 담는다. 
 		dto.setStartRowNum(startRowNum);
 		dto.setEndRowNum(endRowNum);
+		dto.setUser_id(user_id);
 		
 		ModelAndView mView=picService.getList(dto);
 		mView.addObject("pageNum",pageNum);
 		mView.addObject("startPageNum",startPageNum);
 		mView.addObject("endPageNum",endPageNum);
 		mView.addObject("totalPageCount",totalPageCount);
-		
+		mView.addObject("page_id",user_id);
 		mView.setViewName("picboard/picboardlist");
 		
 		return mView;
@@ -137,10 +140,10 @@ public class PicController {
 	@RequestMapping("/picboard/picboarddetail")
 	public ModelAndView getData(PicDto dto, HttpServletRequest request){
 		int cont_id=Integer.parseInt(request.getParameter("cont_id"));
+		
 		dto.setCont_id(cont_id);
 		
 		ModelAndView mView=picService.getPicdetail(dto);
-		
 		mView.setViewName("picboard/picboarddetail");
 		String id=(String)request.getSession().getAttribute("writer");
 

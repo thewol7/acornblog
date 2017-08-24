@@ -13,6 +13,7 @@
 		  FROM (SELECT <include refid="imgColumns"/>,name
 				FROM tp_picboard
 				JOIN tp_account USING(user_id)
+				WHERE user_id=#{user_id}
 			    ORDER BY cont_id DESC
 			    ) result1
 	     )
@@ -54,9 +55,10 @@
 		WHERE cont_id=#{cont_id}
 	</update>
 	
-	<select id="getCount" resultType="int">
+	<select id="getCount" parameterType="int" resultType="int">
 		SELECT NVL(MAX(ROWNUM), 0)
 		FROM tp_picboard
+		WHERE user_id=#{user_id}
 	</select>
 </mapper>
 

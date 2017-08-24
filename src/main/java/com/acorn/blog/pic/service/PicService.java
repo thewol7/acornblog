@@ -13,5 +13,5 @@ public interface PicService {
 	public void commentInsert(PicCommentDto dto);
 	public void deletePics(int cont_id);
 	public void updatePics(PicDto dto);
-	public int getCount();
+	public int getCount(int user_id);
 }

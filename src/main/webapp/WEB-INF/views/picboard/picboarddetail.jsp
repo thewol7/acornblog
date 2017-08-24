@@ -36,7 +36,7 @@
 
 	
 			<!-- Break -->
-			<c:if test="${!empty id}">
+			<c:if test="${id eq page_id}">
 				<span><a class="upbtn" href="picboardupdateform.do?cont_id=${cont_id }">수정하기</a></span>
 				<span><a class="delbtn" href="picboarddelete.do?cont_id=${cont_id }">삭제하기</a></span>
 			</c:if>

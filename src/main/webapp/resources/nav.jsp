@@ -9,7 +9,7 @@
     <li class="dropdown-toggle"><a href="javascript:">BOARD</a></li>
       <ul class="dropdown-menu">
         <li><a href="board/priboardlist.do">PRIVATE BOARD</a></li>
-        <li><a href="javascript:">PICTURE BOARD</a></li>
+        <li><a href="${pageContext.request.contextPath }/picboard/picboardlist.do">PICTURE BOARD</a></li>
         <li><a href="visitboard/list.do">VISIT BOARD</a></li>
       </ul>
     <li><a href="javascript:">OTHERS</a></li>

@@ -27,7 +27,8 @@
 	<div class="row">
 		<c:if test="${!empty data }">
 			<c:forEach var="tmp" items="${data}">
-				<li><a href="picboarddetail.do?cont_id=${tmp.cont_id}"><img src="${tmp.pic}" /></a></li>
+				<li><a href="picboarddetail.do?cont_id=${tmp.cont_id}"><img src="${tmp.pic}" /></a>
+					<br />${tmp.view_count}</li>
 			</c:forEach>
 		</c:if>
 		<c:if test="${empty data }">

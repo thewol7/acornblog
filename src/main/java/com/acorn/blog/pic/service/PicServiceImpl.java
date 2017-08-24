@@ -60,8 +60,8 @@ public class PicServiceImpl implements PicService {
 	}
 
 	@Override
-	public int getCount() {
-		return picDao.getCount();
+	public int getCount(int user_id) {
+		return picDao.getCount(user_id);
 	}
 
 	@Override
