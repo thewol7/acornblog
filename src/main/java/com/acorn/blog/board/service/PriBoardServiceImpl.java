@@ -84,7 +84,9 @@ public class PriBoardServiceImpl implements PriBoardService{
 	public ModelAndView detail(int cont_id) {
 		ModelAndView mView=new ModelAndView();
 		PriBoardDto dto=priboardDao.getData(cont_id);
+		List<PriBoardCommentDto> list=pricommentDao.getList(cont_id);
 		mView.addObject("dto", dto);	
+		mView.addObject("commentlist",list);
 		return mView;
 	}
 
@@ -107,6 +109,6 @@ public class PriBoardServiceImpl implements PriBoardService{
 	public void increaseViewCount(int cont_id) {
 		priboardDao.increaseViewCount(cont_id);
 	}
-	
+
 	
 }
