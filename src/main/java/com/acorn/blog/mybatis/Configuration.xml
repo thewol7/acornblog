@@ -33,7 +33,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<mappers>
 		
 		<mapper resource="com/acorn/blog/mybatis/UsersMapper.xml"/>
-		<!-- <mapper resource="com/acorn/blog/mybatis/MainMapper.xml"/> -->
+		<mapper resource="com/acorn/blog/mybatis/PriboardMapper.xml"/>
+		<mapper resource="com/acorn/blog/mybatis/PriboardCommentMapper.xml"/>
 		<mapper resource="com/acorn/blog/mybatis/VisitBoardMapper.xml"/>
 		<mapper resource="com/acorn/blog/mybatis/UsersMapper.xml"/>
 	</mappers>
