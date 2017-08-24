@@ -40,7 +40,7 @@
 	</script>
 </c:when>
 <c:otherwise>
-<form class="wform vform" action="insert.do" method="post">
+<form class="wform vform" action="insert.do" method="post" id="inputform">
 <h4>${writernamedto.name}: </h4><input class="wcon" type="text" name="content" id="content"/>
 <button class="submitbtn" type="submit" id="contentBtn">등록</button>
 </form>
@@ -64,8 +64,7 @@
 				<td><h4>${tmp.name }</h4></td>
 				<td><h4>${tmp.content}</h4></td>
 				<td><h4>${tmp.content_date}</h4></td>
-				<c:if test="${id == tmp.user_id}">
-				<td><a class="delbtn" href="delete.do?cont_id=${tmp.cont_id } ">삭제</a></td></c:if>
+				<td><c:if test="${id == tmp.user_id}"><a class="delbtn" href="delete.do?cont_id=${tmp.cont_id } ">삭제</a></c:if></td>
 			</tr>	
 		</c:forEach>
 		</c:if>
@@ -106,13 +105,13 @@
 
 </div>
 <script>
-$("contentBtn").on("submit",function(){
-	if($("#content").val()==null){
-		alert("내용쓰세요");
+
+$("#inputform").submit(function(){
+
+	if($("#content").val()==''){
 		return false;
-	}
-	
-})
+	};
+});
 
 </script>
 </body>
