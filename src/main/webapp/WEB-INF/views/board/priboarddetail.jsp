@@ -32,7 +32,7 @@
 	<div class="divline"></div>
 	<div class="row">
 		<form class="wform" action="#">
-			<textarea name="" id="" cols="30" rows="10" class="wcon" disabled="disabled" style="resize:none; box-sizing:border-box;" >${dto.content_content }</textarea>
+			<textarea name="content_content" id="" cols="30" rows="10" class="wcon" disabled="disabled" style="resize:none; box-sizing:border-box;" >${dto.content_content }</textarea>
 		</form>
 	<c:if test="${dto.user_id eq id}">
 		<button class="delbtn">삭제</button>

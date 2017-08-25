@@ -29,7 +29,7 @@ public class PriBoardController {
 		
 		ModelAndView mView=priboardSerivce.list(user_id,page_id,pageNum);
 		//view 페이지 설정하고 
-		mView.setViewName("board/Priboardlist");
+		mView.setViewName("board/priboardlist");
 		//ModelAndView 객체를 리턴해준다. 
 		return mView;
 	}
@@ -53,7 +53,7 @@ public class PriBoardController {
 	@RequestMapping("/board/priboardinsert")
 	public String insert(HttpSession session,
 			@ModelAttribute PriBoardDto dto){
-		String user_id=(String)session.getAttribute("id");
+		dto.setUser_id((int)session.getAttribute("id"));
 		priboardSerivce.insert(dto);
 		
 		return "redirect:/board/priboardlist.do";

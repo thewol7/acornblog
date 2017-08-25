@@ -44,7 +44,7 @@
 				<th>${tmp.view_count }</th>
 			</tr>	
 		</c:forEach>
-		</c:if>
+		
 	</tbody>
 </table>
 <div class="page_display">
@@ -78,16 +78,24 @@
 		</c:otherwise>
 	</c:choose>
 </ul>
-</div>
+</c:if>
+<a class="wbtn" href="priboardinsertform.do">글쓰기</a>
 
+</div>
 <c:choose>
 <c:when test="${empty writernamedto.name}">
 	<script>
+	
+	
 		if(confirm("로그인해야됨")){
 			location.href="list.do"
 		}else{
 			return false;
-		}
+		};
+		$("#contentBtn").click(function(){
+			location.href="priboardinsertform.do"
+		});
+		
 	</script>
 </c:when>
 <c:otherwise>
