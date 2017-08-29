@@ -22,7 +22,7 @@ public class PriBoardController {
 	private PriBoardService priboardSerivce;
 	
 	@RequestMapping("/board/priboardlist")
-	public ModelAndView list(HttpSession session,@RequestParam(defaultValue="1") int pageNum){
+	public ModelAndView list(HttpServletRequest request,HttpSession session,@RequestParam(defaultValue="1") int pageNum){
 		int user_id=(int)session.getAttribute("id");
 		int page_id=(int)session.getAttribute("page_id");
 		// 서비스를 이용해서 글목록이 담긴 ModelAndView 객체를 리턴받는다.

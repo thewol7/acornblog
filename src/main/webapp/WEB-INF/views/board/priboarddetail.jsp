@@ -35,8 +35,8 @@
 			<textarea name="content_content" id="" cols="30" rows="10" class="wcon" disabled="disabled" style="resize:none; box-sizing:border-box;" >${dto.content_content }</textarea>
 		</form>
 	<c:if test="${dto.user_id eq id}">
-		<button class="delbtn">삭제</button>
-		<button class="upbtn">수정</button>
+	<a class="delbtn" href="${pageContext.request.contextPath }/board/priboarddelete.do?cont_id=${dto.cont_id}">삭제</a>
+	<a class="upbtn" href="${pageContext.request.contextPath }/board/priboardupdateform.do?cont_id=${dto.cont_id}">수정</a>
 	</c:if>
 	         <!-- 덧글 -->
          <div class="comments">
@@ -79,10 +79,10 @@
 	</div>
 </div>
 <script>
-	${"#delbtn"}.click(function(){
+	${".delbtn"}.click(function(){
 		location.href="priboarddelete?cont_id=${dto.cont_id}";
 	});
-	${"#upbtn"}.click(function(){
+	${".upbtn"}.click(function(){
 		location.href="priboardupdateform?cont_id=${dto.cont_id}";
 	});
 </script>

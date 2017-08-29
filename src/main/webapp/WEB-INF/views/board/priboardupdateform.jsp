@@ -30,11 +30,12 @@
 <div class="content">
 	<div class="divline"></div>
 	<div class="row">
-		<form class="wform" action="priboardinsert.do">
-			<input type="text" name="content_title" placeholder="제목" />
+		<form class="wform" action="priboardupdate.do">
+			<input type="hidden" name="cont_id" value="${dto.cont_id }" />
+			<input type="text" name="content_title" placeholder="제목" value="${dto.content_title}"/>
 			<div class="divline"></div>
 				<textarea name="content_content" id="" cols="30" rows="10" class="wcon" style="resize:none; box-sizing:border-box;" placeholder="내용을 적어주세요">
-				
+				${dto.content_content}
 				</textarea>
 			<button type="submit">글쓰기</button>
 		</form>

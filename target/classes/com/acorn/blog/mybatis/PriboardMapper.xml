@@ -46,7 +46,7 @@
 	
 	<update id="update" parameterType="PriDto">
 		UPDATE tp_priboard 
-		SET content_title=#{content_title}, content=#{content_content}
+		SET content_title=#{content_title}, content_content=#{content_content}
 		WHERE cont_id=#{cont_id}
 	</update>
 	<select id="getCount" parameterType="int" resultType="int">
