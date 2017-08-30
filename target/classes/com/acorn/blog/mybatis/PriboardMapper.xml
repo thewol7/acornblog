@@ -4,12 +4,12 @@
 	<!-- 자주 사용하는 sql 문을 미리 정의 해 놓기 -->
 	<sql id="PriColumns">
 		cont_id,user_id,content_title,content_content,view_count,
-		TO_CHAR(content_date, 'YY.MM.DD HH24:MI') AS content_date
+		TO_CHAR(content_date, 'YYYY.MM.DD HH24:MI') AS content_date
 	</sql>
 	<select id="getList" resultType="PriDto" parameterType="PriDto">
 		SELECT *
 		FROM (SELECT result1.*,ROWNUM rnum 
-		  FROM (SELECT cont_id,user_id,content_title,content_content,view_count,content_date
+		  FROM (SELECT cont_id,user_id,content_title,content_content,view_count,TO_CHAR(content_date, 'YYYY.MM.DD HH24:MI') AS content_date 
 				FROM tp_priboard
 			    ORDER BY cont_id DESC
 			    ) result1

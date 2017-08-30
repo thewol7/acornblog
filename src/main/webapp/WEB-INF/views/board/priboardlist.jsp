@@ -26,7 +26,7 @@
 <body>
 <jsp:include page="/resources/nav.jsp"></jsp:include>
 <div class="content">
-<table>
+<table class="board-table">
 	<thead>
 		<tr>
 			<th>제목</th>
@@ -38,9 +38,9 @@
 		<c:if test="${not empty list}">
 		<c:forEach var = "tmp" items="${list}">
 			<tr>
-				<th><a href="priboarddetail.do?cont_id=${tmp.cont_id}">${tmp.content_title}</a></th>
-				<th>${tmp.content_date}</th>
-				<th>${tmp.view_count }</th>
+				<td><a href="priboarddetail.do?cont_id=${tmp.cont_id}">${tmp.content_title}</a></td>
+				<td>${tmp.content_date}</td>
+				<td>${tmp.view_count }</td>
 			</tr>	
 		</c:forEach>
 		
