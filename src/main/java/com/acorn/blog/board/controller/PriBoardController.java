@@ -80,11 +80,16 @@ public class PriBoardController {
 	}
 	
 	@RequestMapping("/board/pricommentinsert")
-	public String commentInsert(HttpSession session,
+	public String commentInsert(HttpSession session,@RequestParam int cont_id,
 			@ModelAttribute PriBoardCommentDto dto){
-		int cont_id=dto.getRef_group();
+		dto.setRef_group(cont_id);
 		priboardSerivce.commentInsert(dto);
 		return "redirect:/board/priboarddetail.do?cont_id="+cont_id;
 	}
 	
+	@RequestMapping("/board/pricommentdelete")
+	public String commentDelete(@RequestParam int num,@RequestParam int cont_id){
+		priboardSerivce.commentDelete(num);
+		return "redirect:/board/priboarddetail.do?cont_id="+cont_id;
+	}
 }

@@ -110,5 +110,10 @@ public class PriBoardServiceImpl implements PriBoardService{
 		priboardDao.increaseViewCount(cont_id);
 	}
 
+	@Override
+	public void commentDelete(int num) {
+		pricommentDao.delete(num);
+	}
+
 	
 }

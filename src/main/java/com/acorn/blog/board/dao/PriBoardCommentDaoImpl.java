@@ -30,5 +30,11 @@ public class PriBoardCommentDaoImpl implements PriBoardCommentDao{
 		int seq=session.selectOne("pricomment.getSequence");
 		return seq;
 	}
+
+	@Override
+	public void delete(int num) {
+		session.delete("pricomment.delete", num);
+	}
+	
 	
 }

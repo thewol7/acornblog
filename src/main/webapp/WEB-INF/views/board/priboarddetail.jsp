@@ -48,24 +48,15 @@
                   <div>      
                      <strong>from ${tmp.writer }</strong>
                      ${tmp.regdate }<br/>
-                     <a href="javascript:">답글</a>
                   </div>
                   <textarea rows="5" disabled>${tmp.content}</textarea><br/>
-                  <form action="comment_insert.do" method="post">
-                     <!-- 덧글 작성자 -->
-                     <input type="hidden" name="writer" value="${info.name}"/>
-                     <!-- 덧글 그룹 -->
-                     <input type="hidden" name="ref_group" value="${dto.num}" />
-                     <input type="hidden" name="comment_group" value="${tmp.comment_group}" />
-                     <textarea name="content"></textarea>
-                     <button type="submit" class="submitbtn">등록</button>
-                  </form>
+                  <a class="delBtn" href="pricommentdelete.do?num=${tmp.num }&cont_id=${tmp.ref_group}">삭제</a>
                </div>
                
             </c:forEach>
          
             <div class="comment_form">
-               <form class="wform vform" action="comment_insert.do" method="post">
+               <form class="wform vform" action="pricommentinsert.do?cont_id=${dto.cont_id }" method="post">
                   <!-- 덧글 작성자 -->
                   <input type="hidden" name="writer" value="${id}"/>
                   <h4>독자: </h4>

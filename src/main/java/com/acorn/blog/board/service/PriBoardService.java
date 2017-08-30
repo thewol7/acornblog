@@ -14,4 +14,5 @@ public interface PriBoardService {
 	public ModelAndView detail(int cont_id);
 	public void commentInsert(PriBoardCommentDto dto);
 	public void increaseViewCount(int cont_id);
+	public void commentDelete(int num);
 }
