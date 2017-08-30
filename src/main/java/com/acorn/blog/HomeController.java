@@ -16,18 +16,6 @@ public class HomeController {
 
 	}
 
-//<<<<<<< HEAD
-//	@RequestMapping("/session.do")
-//		public ModelAndView session(){
-//			
-//			ModelAndView mView=new ModelAndView();
-//		
-//			mView.setViewName("session");
-//			return mView;
-//	}
-//=======
-
-
 }
 
 
