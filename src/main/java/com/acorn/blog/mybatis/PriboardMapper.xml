@@ -3,7 +3,6 @@
 <mapper namespace="priboard">
 	<!-- 자주 사용하는 sql 문을 미리 정의 해 놓기 -->
 	<sql id="PriColumns">
-<<<<<<< HEAD
 		cont_id,user_id,content_title,content_content,view_count,
 		TO_CHAR(content_date, 'YYYY.MM.DD HH24:MI') AS content_date
 	</sql>
@@ -54,57 +53,7 @@
 		SELECT NVL(MAX(ROWNUM), 0)
 		FROM tp_priboard
 		WHERE user_id=#{page_id}
-=======
-		cont_id,user_id,content_title,content_content,view_count
-		TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS content_date
-	</sql>
-	<select id="getList" resultType="PriDto" parameterType="PriDto">
-		SELECT *
-		FROM (SELECT result1.*,ROWNUM rnum 
-		  FROM (SELECT cont_id,user_id,content_title,content_content,view_count,content_date
-				FROM tp_priboard
-			    ORDER BY cont_id DESC
-			    ) result1
-	     )
-		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
-	</select>
-	
-	<insert id="insert" parameterType="PriDto">
-		INSERT INTO tp_priboard 
-		(cont_id,user_id,content_title,content_content,view_count,content_date) 
-		VALUES(tp_priboard_seq.NEXTVAL, 
-		#{user_id}, #{content_title}, #{content_content}, #{view_count}, SYSDATE)
-	</insert>
-	
-	<!-- 조회수  1 증가 시키기 -->
-	<update id="increaseview_count" parameterType="int">
-		UPDATE tp_priboard
-		SET view_count = view_count+1
-		WHERE cont_id=#{cont_id}
-	</update>
-	
-	<!-- 글정보 얻어오기 -->
-	<select id="getData" parameterType="int" 
-		resultType="PriDto">
-		SELECT <include refid="PriColumns"/>
-		FROM tp_priboard
-		WHERE cont_id=#{cont_id}	
-	</select>
-	
-	<delete id="delete" parameterType="int">
-		DELETE FROM tp_priboard
-		WHERE cont_id=#{cont_id}
-	</delete>	
-	
-	<update id="update" parameterType="PriDto">
-		UPDATE tp_priboard 
-		SET content_title=#{content_title}, content=#{content_content}
-		WHERE cont_id=#{cont_id}
-	</update>
-	<select id="getCount" resultType="int">
-		SELECT NVL(MAX(ROWNUM), 0)
-		FROM tp_priboard
->>>>>>> refs/remotes/origin/deung
+
 	</select>
 </mapper>
 
