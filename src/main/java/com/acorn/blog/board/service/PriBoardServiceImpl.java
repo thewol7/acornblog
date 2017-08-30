@@ -39,16 +39,16 @@ public class PriBoardServiceImpl implements PriBoardService{
 	}
 
 	@Override
-	public ModelAndView list(int pageNum) {
+	public ModelAndView list(int user_id,int page_id,int pageNum) {
 		//보여줄 페이지의 번호
 		int Num=pageNum;
-				
 		//보여줄 페이지 데이터의 시작 ResultSet row 번호
 		int startRowNum=1+(Num-1)*PAGE_ROW_COUNT;
 		//보여줄 페이지의 끝 ResultSet row 번호
 		int endRowNum=pageNum*PAGE_ROW_COUNT;
 		//전체 row의 갯수 구하기
-		int totalRow=priboardDao.getCount();
+		int totalRow=priboardDao.getCount(page_id);
+		System.out.println(totalRow);
 		//전체페이지의 갯수 구하기
 		int totalPageCount=
 				(int)Math.ceil(totalRow/(double)PAGE_ROW_COUNT);
@@ -62,6 +62,7 @@ public class PriBoardServiceImpl implements PriBoardService{
 			endPageNum=totalPageCount;
 		}
 		PriBoardDto dto=new PriBoardDto();
+		dto.setUser_id(page_id);
 		dto.setStartRowNum(startRowNum);
 		dto.setEndRowNum(endRowNum);
 		//Dao 를 이용해서 글목록을 얻어온다.
@@ -82,7 +83,9 @@ public class PriBoardServiceImpl implements PriBoardService{
 	public ModelAndView detail(int cont_id) {
 		ModelAndView mView=new ModelAndView();
 		PriBoardDto dto=priboardDao.getData(cont_id);
+		List<PriBoardCommentDto> list=pricommentDao.getList(cont_id);
 		mView.addObject("dto", dto);	
+		mView.addObject("commentlist",list);
 		return mView;
 	}
 
@@ -105,6 +108,10 @@ public class PriBoardServiceImpl implements PriBoardService{
 	public void increaseViewCount(int cont_id) {
 		priboardDao.increaseViewCount(cont_id);
 	}
-	
-	
+
+	@Override
+	public void commentDelete(int num) {
+		pricommentDao.delete(num);
+	}
+
 }

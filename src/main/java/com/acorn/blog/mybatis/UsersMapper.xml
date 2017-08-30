@@ -9,7 +9,7 @@
 	</select>
 	<select id="getInfo" resultType="usersDto" parameterType="usersDto">
 		SELECT user_id, id, pwd, name, gender, phone, email, 
-		TO_CHAR(create_date, 'mon DD, YYYY', 'NLS_DATE_LANGUAGE=ENGLISH') AS create_date, today, profile_img, profile_cmt
+		TO_CHAR(create_date, 'mon DD, YYYY', 'NLS_DATE_LANGUAGE=ENGLISH') AS create_date, today, profile_img, profile_cmt 
 		FROM tp_account
 		WHERE user_id=#{user_id}
 	</select>

@@ -22,12 +22,14 @@ public class PriBoardController {
 	private PriBoardService priboardSerivce;
 	
 	@RequestMapping("/board/priboardlist")
-	public ModelAndView list(@RequestParam(defaultValue="1") int pageNum){
-		
+	public ModelAndView list(HttpServletRequest request,HttpSession session,@RequestParam(defaultValue="1") int pageNum){
+		int user_id=(int)session.getAttribute("id");
+		int page_id=(int)session.getAttribute("page_id");
 		// 서비스를 이용해서 글목록이 담긴 ModelAndView 객체를 리턴받는다.
-		ModelAndView mView=priboardSerivce.list(pageNum);
+		
+		ModelAndView mView=priboardSerivce.list(user_id,page_id,pageNum);
 		//view 페이지 설정하고 
-		mView.setViewName("board/Priboardlist");
+		mView.setViewName("board/priboardlist");
 		//ModelAndView 객체를 리턴해준다. 
 		return mView;
 	}
@@ -51,7 +53,7 @@ public class PriBoardController {
 	@RequestMapping("/board/priboardinsert")
 	public String insert(HttpSession session,
 			@ModelAttribute PriBoardDto dto){
-		String user_id=(String)session.getAttribute("id");
+		dto.setUser_id((int)session.getAttribute("id"));
 		priboardSerivce.insert(dto);
 		
 		return "redirect:/board/priboardlist.do";
@@ -78,10 +80,16 @@ public class PriBoardController {
 	}
 	
 	@RequestMapping("/board/pricommentinsert")
-	public String commentInsert(@ModelAttribute PriBoardCommentDto dto){
-		int cont_id=dto.getRef_group();
+	public String commentInsert(HttpSession session,@RequestParam int cont_id,
+			@ModelAttribute PriBoardCommentDto dto){
+		dto.setRef_group(cont_id);
 		priboardSerivce.commentInsert(dto);
 		return "redirect:/board/priboarddetail.do?cont_id="+cont_id;
 	}
 	
+	@RequestMapping("/board/pricommentdelete")
+	public String commentDelete(@RequestParam int num,@RequestParam int cont_id){
+		priboardSerivce.commentDelete(num);
+		return "redirect:/board/priboarddetail.do?cont_id="+cont_id;
+	}
 }

@@ -8,9 +8,10 @@
     <li><a class="active" href="javascript:">HOME</a></li>
     <li class="dropdown-toggle"><a href="javascript:">BOARD</a></li>
       <ul class="dropdown-menu">
-        <li><a href="${pageContext.request.contextPath}/board/priboardlist.do">PRIVATE BOARD</a></li>
+        <li><a href="${pageContext.request.contextPath }/board/priboardlist.do">PRIVATE BOARD</a></li>
         <li><a href="javascript:">PICTURE BOARD</a></li>
         <li><a href="${pageContext.request.contextPath}/visitboard/list.do">VISIT BOARD</a></li>
+
       </ul>
     <li><a href="javascript:">OTHERS</a></li>
     <li class="dropdown-toggle"><a href="javascript:">MY PAGE</a></li>
@@ -33,7 +34,7 @@
 <div class="backdrop">
   <ul>
     <li><a class="active" href="javascript:">HOME</a></li>
-    <li><a href="board.html">BOARD</a></li>
+    <li><a href="${pageContext.request.contextPath }/board/priboardlist.do">BOARD</a></li>
     <li><a href="javascript:">OTHERS</a></li>
     <li><a href="javascript:">MY PAGE</a></li>
     <c:choose>
