@@ -9,4 +9,5 @@ public interface PriBoardCommentDao {
 	public List<PriBoardCommentDto> getList(int ref_group);
 	public int getSequence();
 	public void delete(int num);
+
 }

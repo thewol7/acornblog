@@ -113,5 +113,4 @@ public class PriBoardServiceImpl implements PriBoardService{
 	public void commentDelete(int num) {
 		pricommentDao.delete(num);
 	}
-
 }

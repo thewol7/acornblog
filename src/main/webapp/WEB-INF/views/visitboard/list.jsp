@@ -40,6 +40,7 @@
 	</script>
 </c:when>
 <c:otherwise>
+<<<<<<< HEAD
 <form class="wform vform" action="insert.do" method="post" id="inputform">
 <h4>${writernamedto.name}: </h4><input class="wcon" type="text" name="content" id="content"/>
 <button class="submitbtn" type="submit" id="contentBtn">등록</button>
@@ -112,6 +113,7 @@ $("#inputform").submit(function(){
 		return false;
 	};
 });
+
 
 </script>
 </body>

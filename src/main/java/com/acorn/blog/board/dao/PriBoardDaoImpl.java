@@ -42,6 +42,7 @@ public class PriBoardDaoImpl implements PriBoardDao{
 	}
 
 	@Override
+
 	public void increaseViewCount(int cont_id) {
 		session.update("priboard.increaseviewcount", cont_id);
 	}
@@ -49,6 +50,7 @@ public class PriBoardDaoImpl implements PriBoardDao{
 	@Override
 	public int getCount(int page_id) {
 		return session.selectOne("priboard.getCount", page_id);
+
 	}
 
 }

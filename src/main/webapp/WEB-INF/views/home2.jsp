@@ -132,7 +132,9 @@
       <h2>사진의 제목</h2>
     </div>
     <div class="pic">
-      <a href="javascript:" style="background-image:url(${pageContext.request.contextPath }/resources/images/img2.JPG);"></a>
+
+      <a href="views/picboard/picboardlist" style="background-image:url(${pageContext.request.contextPath }/resources/images/img2.JPG);"></a>
+
       <h2>이렇게 이쁘게</h2>
     </div>
     <div class="pic">
