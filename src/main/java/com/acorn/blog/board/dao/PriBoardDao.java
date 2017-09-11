@@ -12,5 +12,5 @@ public interface PriBoardDao {
 	public List<PriBoardDto> getList(PriBoardDto dto);
 	public void increaseViewCount(int num);
 	public int getCount(int page_id);
-
+	public List<PriBoardDto> homeList(int page_id);
 }

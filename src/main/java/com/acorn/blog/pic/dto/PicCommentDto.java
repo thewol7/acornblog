@@ -10,6 +10,8 @@ public class PicCommentDto {
 	private String regdate;
 	private String profile_img;
 	
+	public PicCommentDto(){};
+	
 	public PicCommentDto(int num, int user_id, String writer, String content, int ref_group, int comment_group,
 			String regdate, String profile_img) {
 		super();

@@ -39,7 +39,7 @@ public class PriBoardServiceImpl implements PriBoardService{
 	}
 
 	@Override
-	public ModelAndView list(int user_id,int page_id,int pageNum) {
+	public ModelAndView list(int page_id,int pageNum) {
 		//보여줄 페이지의 번호
 		int Num=pageNum;
 		//보여줄 페이지 데이터의 시작 ResultSet row 번호

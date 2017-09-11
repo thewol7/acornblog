@@ -25,21 +25,24 @@
 <body>
 <jsp:include page="/resources/nav.jsp"></jsp:include>
 <div class="content">
-<table>
+<c:if test="${not empty list}">
+<table class="board-table">
 	<thead>
 		<tr>
-			<th>제목</th>
-			<th>작성일</th>
-			<th>조회수</th>
+			<th><h4>글번호</h4></th>
+			<th><h4>제목</h4></th>
+			<th><h4>작성일</h4></th>
+			<th><h4>조회수</h4></th>
 		</tr>
 	</thead>
 	<tbody>
-		<c:if test="${not empty list}">
+		
 		<c:forEach var = "tmp" items="${list}">
 			<tr>
-				<th><a href="priboarddetail.do?cont_id=${tmp.cont_id}">${tmp.content_title}</a></th>
-				<th>${tmp.content_date}</th>
-				<th>${tmp.view_count }</th>
+				<td><h4>${tmp.cont_id }</h4></td>
+				<td><h4><a href="${pageContext.request.contextPath }/board/priboarddetail.do?cont_id=${tmp.cont_id}">${tmp.content_title}</a></h4></td>
+				<td><h4>${tmp.content_date}</h4></td>
+				<td><h4>${tmp.view_count }</h4></td>
 			</tr>	
 		</c:forEach>
 		
@@ -76,6 +79,9 @@
 		</c:otherwise>
 	</c:choose>
 </ul>
+</c:if>
+<c:if test="${empty list }">
+			<h3>입력된 게시글이 없습니다.</h3>
 </c:if>
 <a class="wbtn" href="priboardinsertform.do">글쓰기</a>
 

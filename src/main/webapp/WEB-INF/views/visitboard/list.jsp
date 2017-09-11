@@ -30,20 +30,16 @@
 <div class="divline"></div>
 
 <c:choose>
+
 <c:when test="${empty writernamedto.name}">
-	<script>
-		if(confirm("로그인해야됨")){
-			location.href="list.do"
-		}else{
-			return false;
-		}
-	</script>
+	<h4>방명록을 남기려면 로그인해야합니다.</h4>
 </c:when>
+
 <c:otherwise>
-<<<<<<< HEAD
 <form class="wform vform" action="insert.do" method="post" id="inputform">
-<h4>${writernamedto.name}: </h4><input class="wcon" type="text" name="content" id="content"/>
-<button class="submitbtn" type="submit" id="contentBtn">등록</button>
+	<h4>${writernamedto.name}: </h4>
+	<input class="wcon" type="text" name="content" id="content"/>
+	<button class="submitbtn" type="submit" id="contentBtn">등록</button>
 </form>
 </c:otherwise>	
 
@@ -68,6 +64,9 @@
 				<td><c:if test="${id == tmp.user_id}"><a class="delbtn" href="delete.do?cont_id=${tmp.cont_id } ">삭제</a></c:if></td>
 			</tr>	
 		</c:forEach>
+		</c:if>
+		<c:if test="${empty list }">
+			<h3>입력된 방명록이 없습니다.</h3>
 		</c:if>
 	</tbody>
 </table>

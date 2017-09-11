@@ -11,5 +11,6 @@ public interface VisitBoardDao {
 	public VisitBoardDto getHostName(int page_id);
 	public VisitBoardDto getWriterName(int session_id);
 	public int getMaxpage(int page_id);
+	public List<VisitBoardDto> homeShow(int page_id);
 	
 }

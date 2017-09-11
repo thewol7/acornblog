@@ -20,7 +20,11 @@
 		(num, writer, content, ref_group, comment_group,
 		regdate)
 		VALUES(#{num}, #{writer}, #{content},
-		#{target_id}, #{ref_group}, #{comment_group}, SYSDATE)
+		#{ref_group}, #{comment_group}, SYSDATE)
 	</insert>
-
+	<delete id="delete" parameterType="int">
+		DELETE 
+		FROM tp_priboard_comment 
+		WHERE num=#{num} 
+	</delete>
 </mapper>

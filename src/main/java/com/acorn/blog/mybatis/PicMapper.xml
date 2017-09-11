@@ -60,6 +60,14 @@
 		FROM tp_picboard
 		WHERE user_id=#{user_id}
 	</select>
+	
+	<select id="showList" parameterType="int" resultType="picDto">
+		SELECT cont_id,content_title,pic
+		FROM tp_picboard
+		WHERE user_id=#{user_id}
+		ORDER BY content_date DESC
+	</select>
+	
 </mapper>
 
 

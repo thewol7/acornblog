@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -85,6 +86,41 @@ public class LoginAspect {
 		
 		return obj;
 	}
+	@Around("execution(public * Check*(..))")
+	public Object Check(ProceedingJoinPoint joinPoint) throws Throwable{
+		Object[] args=joinPoint.getArgs();
+		boolean isLogin=false;
+		for(Object tmp:args){
+			if(tmp instanceof HttpSession){
+				HttpSession session=(HttpSession)tmp;
+				int id=(Integer)session.getAttribute("id");
+				if(id!=0){
+					isLogin=true;
+				}
+			}
+		}
+			
+		if(isLogin){//로그인을 했으면
+			//Aop 가 적용된 메소드를 수행하고
+			Object obj=joinPoint.proceed();
+			//리턴된 객체를 그대로 리턴한다.
+			return obj;
+		}else{//로그인을 하지 않았으면
+			//Aop 가 적용된 메소드를 수행하지 않고 바로 아래와 같은
+			//문자열을 리턴해서 다른 곳으로 보낸다.
+			return "redirect:/home.do";
+		}
+	}
+//	@Before("execution(* * *(..))")
+//	public void pageidCheck(HttpServletRequest request){
+//		if(request.getSession().getAttribute("page_id")==null){
+//			if(request.getSession().getAttribute("id")==null){
+//				request.getSession().setAttribute("page_id", request.getParameter("page_id"));
+//			}else{
+//				request.getSession().setAttribute("page_id", request.getSession().getAttribute("id"));
+//			}
+//		}
+//	}
 }
 
 

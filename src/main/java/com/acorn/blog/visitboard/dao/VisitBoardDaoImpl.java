@@ -49,4 +49,9 @@ public class VisitBoardDaoImpl implements VisitBoardDao{
 		return count;
 	}
 
+	@Override
+	public List<VisitBoardDto> homeShow(int page_id) {		
+		return session.selectList("visitboard.homeShow",page_id);
+	}
+
 }

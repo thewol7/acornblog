@@ -22,7 +22,11 @@ public class VisitBoardController {
 	
 	@RequestMapping("/visitboard/list")
 	public ModelAndView controllist(HttpSession session,HttpServletRequest request){
-		int session_id=(Integer)session.getAttribute("id");
+		
+		int session_id=0;
+		if(session.getAttribute("id")!=null){
+			session_id=(Integer)session.getAttribute("id");
+		}
 		int page_id=(Integer)session.getAttribute("page_id");	
 		//서비스를 이용해서 글목록이 담긴 ModelAndView 객체를 리턴받는다.
 		

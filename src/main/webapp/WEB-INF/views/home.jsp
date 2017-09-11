@@ -16,7 +16,7 @@
 
 <jsp:include page="/resources/nav.jsp"></jsp:include>
 <div class="content">
-  <h3>aaa님의 페이지입니다.</h3>
+  <h3>${info.name }님의 페이지입니다.</h3>
   <div class="divline"></div>
   <div class="main-profile">
   	<%-- ${info.profile_img } --%>
@@ -42,64 +42,51 @@
       <col width="25%">
       <col width="25%">
     </colgroup>
-    <thead>
-      <th><h4>번호</h4></th>
-      <th><h4>제목</h4></th>
-      <th><h4>작성자</h4></th>
-      <th><h4>작성일</h4></th>
-    </thead>
-    <tbody>
-      <tr>
-        <td><h4>1</h4></td>
-        <td><h4><a href="javascript:">최근에 쓴 게시글 5개</a></h4></td>
-        <td><h4>aaa</h4></td>
-        <td><h4>2017-08-03</h4></td>
-      </tr>
-      <tr>
-        <td><h4>2</h4></td>
-        <td><h4><a href="javascript:">최근에 쓴 게시글 5개</a></h4></td>
-        <td><h4>aaa</h4></td>
-        <td><h4>2017-08-03</h4></td>
-      </tr>
-      <tr>
-        <td><h4>3</h4></td>
-        <td><h4><a href="javascript:">최근에 쓴 게시글 5개</a></h4></td>
-        <td><h4>aaa</h4></td>
-        <td><h4>2017-08-03</h4></td>
-      </tr>
-      <tr>
-        <td><h4>4</h4></td>
-        <td><h4><a href="javascript:">최근에 쓴 게시글 5개</a></h4></td>
-        <td><h4>aaa</h4></td>
-        <td><h4>2017-08-03</h4></td>
-      </tr>
-      <tr>
-        <td><h4>5</h4></td>
-        <td><h4><a href="javascript:">최근에 쓴 게시글 5개</a></h4></td>
-        <td><h4>aaa</h4></td>
-        <td><h4>2017-08-03</h4></td>
-      </tr>
-    </tbody>
-  </table>
+    <c:choose>
+    	<c:when  test="${not empty priDto}">
+    		
+		    <thead>
+		      <th><h4>번호</h4></th>
+		      <th><h4>제목</h4></th>
+		      <th><h4>작성자</h4></th>
+		      <th><h4>작성일</h4></th>
+		    </thead>
+		    <tbody>
+		    <c:forEach var="tmp" items="${priDto }" begin="0" end="4">
+		      <tr>
+		        <td><h4>${tmp.cont_id }</h4></td>
+		        <td><h4><a href="${pageContext.request.contextPath }/board/priboarddetail.do?cont_id=${tmp.cont_id}">${tmp.content_title }</a></h4></td>
+		        <td><h4>${tmp.user_id }</h4></td>
+		        <td><h4>${tmp.content_date }</h4></td>
+		      </tr>
+		     </c:forEach> 
+		    </tbody>
+		  	</table>
+  	</c:when>
+  	<c:otherwise>
+  		<br /><br />
+  		<h4 style="text-align:center;">글 목록이 없습니다.</h4>
+  	</c:otherwise>
+  	</c:choose>
+  	
   <h3>최근 사진</h3>
   <div class="divline"></div>
   <div class="pics">
-    <div class="pic">
-      <a href="javascript:" style="background-image:url(${pageContext.request.contextPath }/resources/images/img1.jpg);"></a>
-      <h2>사진의 제목</h2>
-    </div>
-    <div class="pic">
-      <a href="picboard/picboardlist.do" style="background-image:url(${pageContext.request.contextPath }/resources/images/img2.JPG);"></a>
-      <h2>이렇게 이쁘게</h2>
-    </div>
-    <div class="pic">
-      <a href="javascript:" style="background-image:url(${pageContext.request.contextPath }/resources/images/img3.jpg);"></a>
-      <h2>뜨지롱</h2>
-    </div>
-    <div class="pic">
-      <a href="javascript:" style="background-image:url(${pageContext.request.contextPath }/resources/images/img4.jpg);"></a>
-      <h2>ㅎㅎ</h2>
-    </div>
+  <c:choose>
+   <c:when  test="${not empty picDto}">
+  	<c:forEach var="tmp" items="${picDto}" begin="0" end="3">
+	    <div class="pic">
+	      <a href="${pageContext.request.contextPath }/picboard/picboarddetail.do?cont_id=${tmp.cont_id}"
+	      	 style="background-image:url(${tmp.pic});"></a>
+	      <h3>${tmp.content_title }</h3>
+	    </div>
+    </c:forEach>
+   </c:when>
+   
+   <c:otherwise>
+  	<h4>사진이 없습니다.</h4>
+   </c:otherwise>
+  </c:choose>
   </div>
   <h3>최근 방명록</h3>
   <div class="divline"></div>
@@ -109,74 +96,39 @@
       <col width="50%">
       <col width="30%">
     </colgroup>
-    <thead>
-      <th>
-        <h4>글쓴이</h4>
-      </th>
-      <th>
-        <h4>내용</h4>
-      </th>
-      <th>
-        <h4>작성일</h4>
-      </th>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          <h4><a href="javascript:">아무개</a></h4>
-        </td>
-        <td>
-          <h4>잘 지내냐</h4>
-        </td>
-        <td>
-          <h4>2017-08-03</h4>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4><a href="javascript:">기지개</a></h4>
-        </td>
-        <td>
-          <h4>이렇게</h4>
-        </td>
-        <td>
-          <h4>2017-08-03</h4>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4><a href="javascript:">지우개</a></h4>
-        </td>
-        <td>
-          <h4>방명록이</h4>
-        </td>
-        <td>
-          <h4>2017-08-03</h4>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4><a href="javascript:">무지개</a></h4>
-        </td>
-        <td>
-          <h4>최대</h4>
-        </td>
-        <td>
-          <h4>2017-08-03</h4>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h4><a href="javascript:">미친개</a></h4>
-        </td>
-        <td>
-          <h4>다섯개까지</h4>
-        </td>
-        <td>
-          <h4>2017-08-03</h4>
-        </td>
-      </tr>
-    </tbody>
+    <c:choose>
+    <c:when test="${not empty visDto}">
+	    <thead>
+	      <th>
+	        <h4>글쓴이</h4>
+	      </th>
+	      <th>
+	        <h4>내용</h4>
+	      </th>
+	      <th>
+	        <h4>작성일</h4>
+	      </th>
+	    </thead>
+	    
+    	<tbody>
+    	<c:forEach var ="tmp" items="${visDto}" begin="0" end="4" >
+	      <tr>
+		        <td>
+		          <h4><a href="${pageContext.request.contextPath}/visitboard/list.do?page_id=${tmp.writer_id}">${tmp.name}</a></h4>
+		        </td>
+		        <td>
+		          <h4>${tmp.content}</h4>
+		        </td>
+		        <td><h4>${tmp.content_date }</h4></td>
+	      </tr>
+	      </c:forEach>
+	    </tbody>
+    </c:when>
+    <c:otherwise>
+    	<h4>방명록이 없습니다.</h4>
+    </c:otherwise>
+    </c:choose>
+  
   </table>
 </div>
 </body>

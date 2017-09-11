@@ -12,4 +12,5 @@ public interface PicDao {
 	public void deletePics(int cont_id);
 	public void updatePics(PicDto dto);
 	public int getCount(int user_id);
+	public List<PicDto> showList(int cont_id);
 }

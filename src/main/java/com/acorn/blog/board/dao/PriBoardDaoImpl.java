@@ -53,4 +53,9 @@ public class PriBoardDaoImpl implements PriBoardDao{
 
 	}
 
+	@Override
+	public List<PriBoardDto> homeList(int page_id) {
+		return session.selectList("priboard.homeList", page_id);
+	}
+
 }

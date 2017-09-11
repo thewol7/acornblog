@@ -49,4 +49,9 @@ public class PicDaoImpl implements PicDao {
 		return session.selectOne("pic.getCount",user_id);
 	}
 
+	@Override
+	public List<PicDto> showList(int cont_id) {
+		return session.selectList("pic.showList",cont_id);
+	}
+
 }
