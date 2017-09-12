@@ -44,7 +44,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="com/acorn/blog/mybatis/PriboardMapper.xml"/>
 		<mapper resource="com/acorn/blog/mybatis/PicMapper.xml"/>
 		<mapper resource="com/acorn/blog/mybatis/PicCommentMapper.xml"/>
-
+		<mapper resource="com/acorn/blog/mybatis/othersMapper.xml"/>
 	</mappers>
 	
 

@@ -56,7 +56,7 @@
 		      <tr>
 		        <td><h4>${tmp.cont_id }</h4></td>
 		        <td><h4><a href="${pageContext.request.contextPath }/board/priboarddetail.do?cont_id=${tmp.cont_id}">${tmp.content_title }</a></h4></td>
-		        <td><h4>${tmp.user_id }</h4></td>
+		        <td><h4>${tmp.name}</h4></td>
 		        <td><h4>${tmp.content_date }</h4></td>
 		      </tr>
 		     </c:forEach> 

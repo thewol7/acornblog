@@ -66,7 +66,7 @@
 		</c:forEach>
 		</c:if>
 		<c:if test="${empty list }">
-			<h3>입력된 방명록이 없습니다~.</h3>
+			<h3>입력된 방명록이 없습니다.</h3>
 		</c:if>
 	</tbody>
 </table>

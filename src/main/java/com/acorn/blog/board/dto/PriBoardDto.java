@@ -3,6 +3,7 @@ package com.acorn.blog.board.dto;
 public class PriBoardDto {
 	private int user_id;
 	private int cont_id;
+	private String name;
 	private String content_title;
 	private String content_content;
 	private int view_count;
@@ -17,11 +18,12 @@ public class PriBoardDto {
 	public PriBoardDto(){}
 
 
-	public PriBoardDto(int user_id, int cont_id, String content_title, String content_content, int view_count,
-			String content_date, int startRowNum, int endRowNum, int prevNum, int nextNum) {
+	public PriBoardDto(int user_id, int cont_id, String name, String content_title, String content_content,
+			int view_count, String content_date, int startRowNum, int endRowNum, int prevNum, int nextNum) {
 		super();
 		this.user_id = user_id;
 		this.cont_id = cont_id;
+		this.name = name;
 		this.content_title = content_title;
 		this.content_content = content_content;
 		this.view_count = view_count;
@@ -50,6 +52,16 @@ public class PriBoardDto {
 
 	public void setCont_id(int cont_id) {
 		this.cont_id = cont_id;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 
@@ -132,4 +144,6 @@ public class PriBoardDto {
 		this.nextNum = nextNum;
 	}
 
+
+	
 }

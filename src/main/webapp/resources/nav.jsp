@@ -24,7 +24,7 @@
         <li><a href="${pageContext.request.contextPath}/visitboard/list.do?url=${pageContext.request.contextPath }">VISIT BOARD</a></li>
 
       </ul>
-    <li><a href="javascript:">OTHERS</a></li>
+    <li><a href="${pageContext.request.contextPath }/others/userlist.do">OTHERS</a></li>
     <li class="dropdown-toggle"><a href="javascript:">MY PAGE</a></li>
       <ul class="dropdown-menu">
         <li><a href="${pageContext.request.contextPath }/home.do?page_id=${id }">내 블로그</a></li>

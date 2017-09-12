@@ -58,4 +58,11 @@ public class PriBoardDaoImpl implements PriBoardDao{
 		return session.selectList("priboard.homeList", page_id);
 	}
 
+	@Override
+	public String getName(int page_id) {
+		return session.selectOne("priboard.getName", page_id);
+	}
+	
+	
+
 }

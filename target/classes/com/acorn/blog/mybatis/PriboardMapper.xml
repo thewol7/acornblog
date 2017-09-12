@@ -9,8 +9,11 @@
 	<select id="getList" resultType="PriDto" parameterType="PriDto">
 		SELECT *
 		FROM (SELECT result1.*,ROWNUM rnum 
-		  FROM (SELECT cont_id,user_id,content_title,content_content,view_count,TO_CHAR(content_date, 'YYYY.MM.DD HH24:MI') AS content_date 
-				FROM tp_priboard
+		  FROM (SELECT cont_id,name,p.user_id,content_title,content_content,view_count
+		  		,TO_CHAR(content_date, 'YYYY.MM.DD HH24:MI') AS content_date 
+				FROM tp_priboard p
+				JOIN tp_account a ON(a.user_id = p.user_id) 
+				WHERE p.user_id = #{user_id} 
 			    ORDER BY cont_id DESC
 			    ) result1
 	     )
@@ -56,11 +59,18 @@
 
 	</select>
 	<select id="homeList" parameterType="int" resultType="PriDto">
-		SELECT cont_id,user_id,content_title, 
+		SELECT cont_id,name,p.user_id,content_title, 
 		TO_CHAR(content_date, 'YYYY.MM.DD HH24:MI') AS content_date  
-		FROM tp_priboard  
+		FROM tp_priboard p
+		JOIN tp_account a ON( a.user_id=p.user_id) 
+		WHERE p.user_id=#{page_id}
+	</select>
+	<select id="getName" parameterType="int" resultType="String">
+		SELECT name 
+		FROM tp_account
 		WHERE user_id=#{page_id}
 	</select>
+	
 </mapper>
 
 

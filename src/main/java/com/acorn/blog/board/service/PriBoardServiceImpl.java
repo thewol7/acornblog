@@ -65,6 +65,7 @@ public class PriBoardServiceImpl implements PriBoardService{
 		dto.setUser_id(page_id);
 		dto.setStartRowNum(startRowNum);
 		dto.setEndRowNum(endRowNum);
+		String page_name=priboardDao.getName(page_id);
 		//Dao 를 이용해서 글목록을 얻어온다.
 		List<PriBoardDto> list=priboardDao.getList(dto);
 		//ModelAndView 객체를 생성해서 
@@ -75,6 +76,7 @@ public class PriBoardServiceImpl implements PriBoardService{
 		mView.addObject("startPageNum", startPageNum);
 		mView.addObject("endPageNum", endPageNum);
 		mView.addObject("totalRow", totalRow);
+		mView.addObject("page_name", page_name);
 		//ModelAndView 객체를 리턴해준다. 
 		return mView;
 	}

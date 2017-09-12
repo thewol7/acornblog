@@ -25,6 +25,7 @@
 <body>
 <jsp:include page="/resources/nav.jsp"></jsp:include>
 <div class="content">
+<h3>${page_name}의 게시판 입니다.</h3>
 <c:if test="${not empty list}">
 <table class="board-table">
 	<thead>
