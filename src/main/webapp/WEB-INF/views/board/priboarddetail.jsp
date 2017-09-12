@@ -73,10 +73,10 @@
 </div>
 <script>
 	${".delbtn"}.click(function(){
-		location.href="priboarddelete?cont_id=${dto.cont_id}";
+		location.href="${pageContext.request.contextPath}/board/priboarddelete?cont_id=${dto.cont_id}";
 	});
 	${".upbtn"}.click(function(){
-		location.href="priboardupdateform?cont_id=${dto.cont_id}";
+		location.href="${pageContext.request.contextPath}/board/priboardupdateform?cont_id=${dto.cont_id}";
 	});
 </script>
 </body>

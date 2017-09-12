@@ -14,7 +14,7 @@
 <h3>로그인</h3>
 <div class="divline"></div>
 
-<form class="wform hform" action="signin.do?url=${param.url}" method="post">
+<form class="wform hform" action="${pageContext.request.contextPath}/users/signin.do?url=${param.url}" method="post">
 
 	<input class="wcon" type="text" name="id" id="id" placeholder="아이디"/><br/>
 	<input class="wcon" type="password" name="pwd" id="pwd" placeholder="비밀번호"/><br/>

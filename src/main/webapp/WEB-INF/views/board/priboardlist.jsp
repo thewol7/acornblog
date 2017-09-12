@@ -53,7 +53,7 @@
 <ul class="paging">
 	<c:choose>
 		<c:when test="${startPageNum ne 1 }"><!-- 보는페이지가 1페이지이아니면( not equals) -->
-			<li><a class="navbtn prev" href="list.do?pageNum=${startPageNum-1 }">이전</a></li>
+			<li><a class="navbtn prev" href="${pageContext.request.contextPath }/board/priboardlist.do?pageNum=${startPageNum-1 }">이전</a></li>
 		</c:when>
 		<c:otherwise>
 			<li><a class="navbtn disabled" href="javascript:">이전</a> <!-- 1이면 mute(가림) --></li>
@@ -67,13 +67,13 @@
 				<!-- <a  class="active" href="list.do?pageNum=${i }">${i }</a> -->
 			</c:when>
 			<c:otherwise>
-				<a href="list.do?pageNum=${i }">${i }</a>
+				<a href="${pageContext.request.contextPath }/board/priboardlist.do?pageNum=${i }">${i }</a>
 			</c:otherwise>
 		</c:choose>
 	</c:forEach>
 	<c:choose>
 		<c:when test="${endPageNum lt totalPageCount }">
-			<li><a class="navbtn next" href="list.do?pageNum=${endPageNum+1 }">다음</a></li>
+			<li><a class="navbtn next" href="${pageContext.request.contextPath }/board/priboardlist.do?pageNum=${endPageNum+1 }">다음</a></li>
 		</c:when>
 		<c:otherwise>
 			<li><a class="navbtn disabled" href="javascript:">다음</a></li>
@@ -84,8 +84,9 @@
 <c:if test="${empty list }">
 			<h3>입력된 게시글이 없습니다.</h3>
 </c:if>
-<a class="wbtn" href="priboardinsertform.do">글쓰기</a>
-
+<c:if test="${mydata.id eq userdata.id }">
+<a class="wbtn" href="${pageContext.request.contextPath }/board/priboardinsertform.do">글쓰기</a>
+</c:if>
 </div>
 <c:choose>
 <c:when test="${empty writernamedto.name}">
@@ -93,12 +94,12 @@
 	
 	
 		if(confirm("로그인해야됨")){
-			location.href="list.do"
+			location.href="${pageContext.request.contextPath}/board/priboardlist.do"
 		}else{
 			return false;
 		};
 		$("#contentBtn").click(function(){
-			location.href="priboardinsertform.do"
+			location.href="${pageContext.request.contextPath}/board/priboardinsertform.do"
 		});
 		
 	</script>

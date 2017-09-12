@@ -26,32 +26,32 @@ img {
 	<tbody>
 		<tr>
 			<th>아이디</th>
-			<td>${session.id }</td>
+			<td>${mydata.id }</td>
 		</tr>
 		<tr>
 			<th>이름</th>
-			<td>${session.name }</td>
+			<td>${mydata.name }</td>
 		</tr>
 		<tr>
 			<th>휴대폰</th>
-			<td>${session.phone }</td>
+			<td>${mydata.phone }</td>
 		</tr>
 		<tr>
 			<th>이메일</th>
-			<td>${session.email }</td>
+			<td>${mydata.email }</td>
 		</tr>
 		<tr>
 			<th>프로필 이미지</th>
-			<td><img src="${session.profile_img }" alt="" /></td>
+			<td><img src="${mydata.profile_img }" alt="" /></td>
 		</tr>
 		<tr>
 			<th>프로필 소개</th>
 			<td><textarea readonly="readonly" name="profile_cmt" id="profile_cmt"
-						rows="5" maxlength="100">${session.profile_cmt }</textarea>
+						rows="5" maxlength="100">${mydata.profile_cmt }</textarea>
 			</td>
 		</tr>
 	</tbody>
 </table>
-<a href="updateform.do">가입정보 수정</a><br />
+<a href="${pageContext.request.contextPath}/users/updateform.do">가입정보 수정</a><br />
 </body>
 </html>

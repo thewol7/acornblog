@@ -4,10 +4,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>views/alert.jsp</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.css" />
 </head>
 <body>
-	<p>${msg}</p>
-	<a href="${pageContext.request.contextPath}/picboard/picboardlist.do">확인</a>
+<div class="container">
+	<h3>알림</h3>
+	<div class="alert alert-success">
+		${msg }
+		<a href="${pageContext.request.contextPath}/picboard/picboardlist.do">확인</a>
+	</div>
+</div>
 </body>
 </html>

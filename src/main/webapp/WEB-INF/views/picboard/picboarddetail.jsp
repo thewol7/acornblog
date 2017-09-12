@@ -29,11 +29,11 @@
 			<p style="overflow:auto;">${dto.content_content}</p>
 
 			<!-- Break -->
-			<c:if test="${id eq page_id}">
-				<span><a class="upbtn" href="picboardupdateform.do?cont_id=${cont_id}">수정하기</a></span>
-				<span><a class="delbtn" href="picboarddelete.do?cont_id=${cont_id}">삭제하기</a></span>
+			<c:if test="${mydata.id eq userdata.id}">
+				<span><a class="upbtn" href="${pageContext.request.contextPath}/picboard/picboardupdateform.do?cont_id=${cont_id}">수정하기</a></span>
+				<span><a class="delbtn" href="${pageContext.request.contextPath}/picboard/picboarddelete.do?cont_id=${cont_id}">삭제하기</a></span>
 			</c:if>
-			<button type="button" class="backbtn" onclick="location.href='picboardlist.do'">돌아가기</button>				
+			<button type="button" class="backbtn" onclick="location.href='${pageContext.request.contextPath}/picboard/picboardlist.do'">돌아가기</button>				
 			
 			<!-- 덧글 -->
 	         <div class="comments">
@@ -47,14 +47,14 @@
 	                     ${tmp.regdate }<br/>
 	                  </div>
 	                  <textarea rows="5" disabled>${tmp.content}</textarea><br/>
-	                  <a class="delBtn" href="piccommentdelete.do?num=${tmp.num }&cont_id=${tmp.ref_group}">삭제</a>
+	                  <a class="delBtn" href="${pageContext.request.contextPath}/picboard/piccommentdelete.do?num=${tmp.num }&cont_id=${tmp.ref_group}">삭제</a>
 	               </div>
 	               
 	            </c:forEach>
 	         
 	            <div class="comment_form">
 	            	<c:if test="${not empty id }">
-	               <form class="wform vform" action="comment_insert.do?cont_id=${dto.cont_id }" method="post">
+	               <form class="wform vform" action="${pageContext.request.contextPath}/picboard/comment_insert.do?cont_id=${dto.cont_id }" method="post">
 	                  <!-- 덧글 작성자 -->
 	                  <input type="hidden" name="writer" value="${id}"/>
 	                  <h4>${mydata.name}: </h4>

@@ -53,7 +53,7 @@ div.uploadcare--progress, div.uploadcare--progress_type_canvas{
 <body>
 	<div class="container">
 		<h3>회원가입 폼입니다.</h3>
-		<form action="signup.do" method="post" id="signup_form" class="signup_form" novalidate>
+		<form action="${pageContext.request.contextPath}/users/signup.do" method="post" id="signup_form" class="signup_form" novalidate>
 			<div class="">
 				<input type="text" name="id" id="id" placeholder="ID">
 				<p class="help-block">사용할 수 없는 아이디 입니다.</p>

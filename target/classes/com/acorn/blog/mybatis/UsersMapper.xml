@@ -26,6 +26,11 @@
 		INSERT INTO tp_account (user_id, id, pwd, name, gender, phone, email, create_date, today, profile_img, profile_cmt)
 		VALUES (tp_account_seq.NEXTVAL, #{id}, #{pwd}, #{name}, #{gender}, #{phone}, #{email}, SYSDATE, DEFAULT, #{profile_img}, #{profile_cmt})
 	</insert>
+	<update id="update" parameterType="usersDto">
+		UPDATE tp_account
+		SET id=#{id}, pwd=#{pwd}, name=#{name}, phone=#{phone}, email=#{email}, profile_img=#{profile_img}, profile_cmt=#{profile_cmt}
+		WHERE id=#{id}
+	</update>
 </mapper>
 
 

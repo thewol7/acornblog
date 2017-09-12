@@ -21,13 +21,13 @@
 
 	<h3>${userdata.name}님의 사진첩</h3>
 	<div class="divline"></div>
-	
-	<a href="picboardwriteform.do" class="wbtn">새글쓰기</a>
-	
+	<c:if test="${mydata.id eq userdata.id }">
+		<a href="${pageContext.request.contextPath}/picboard/picboardwriteform.do" class="wbtn">새글쓰기</a>
+	</c:if>
 	<div class="row">
 		<c:if test="${!empty data }">
 			<c:forEach var="tmp" items="${data}">
-				<li><a href="picboarddetail.do?cont_id=${tmp.cont_id}"><img src="${tmp.pic}" /></a>
+				<li><a href="${pageContext.request.contextPath}/picboard/picboarddetail.do?cont_id=${tmp.cont_id}"><img src="${tmp.pic}" /></a>
 					<br />${tmp.view_count}</li>
 			</c:forEach>
 		</c:if>
@@ -40,7 +40,7 @@
 		<c:choose>
 			<c:when test="${startPageNum ne 1 }">
 				<li>
-					<a class="navbtn prev" href="picboardlist.do?pageNum=${startPageNum-1 }">&laquo;</a>
+					<a class="navbtn prev" href="${pageContext.request.contextPath}/picboard/picboardlist.do?pageNum=${startPageNum-1 }">&laquo;</a>
 				</li>
 			</c:when>
 			<c:otherwise>
@@ -59,7 +59,7 @@
 				</c:when>
 				<c:otherwise>
 					<li>
-						<a class="pages" href="picboardlist.do?pageNum=${i }">${i }</a>
+						<a class="pages" href="${pageContext.request.contextPath}/picboard/picboardlist.do?pageNum=${i }">${i }</a>
 					</li>
 				</c:otherwise>
 			</c:choose>

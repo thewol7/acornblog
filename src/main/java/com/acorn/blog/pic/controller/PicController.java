@@ -183,8 +183,11 @@ public class PicController {
 	}
 	
 	@RequestMapping("/picboard/picboarddelete")
-	public String idCheckDelete(HttpSession session,@RequestParam int cont_id){
+	public ModelAndView privateDelete(HttpServletRequest request,@RequestParam int cont_id){
 		picService.deletePics(cont_id);
-		return "alert";
+		ModelAndView mView=new ModelAndView();
+		mView.addObject("msg", "삭제되었습니다.");
+		mView.setViewName("picboard/delalert");
+		return mView;
 	}
 }

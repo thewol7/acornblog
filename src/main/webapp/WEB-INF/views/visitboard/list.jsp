@@ -61,7 +61,7 @@
 				<td><h4>${tmp.name }</h4></td>
 				<td><h4>${tmp.content}</h4></td>
 				<td><h4>${tmp.content_date}</h4></td>
-				<td><c:if test="${id == tmp.user_id}"><a class="delbtn" href="delete.do?cont_id=${tmp.cont_id } ">삭제</a></c:if></td>
+				<td><c:if test="${id == tmp.user_id}"><a class="delbtn" href="${pageContext.request.contextPath}/visitboard/delete.do?cont_id=${tmp.cont_id } ">삭제</a></c:if></td>
 			</tr>	
 		</c:forEach>
 		</c:if>
@@ -74,7 +74,7 @@
 <ul class="paging">
 	<c:choose>
 		<c:when test="${startPageNum ne 1 }"><!-- 보는페이지가 1페이지이아니면(not equals) -->
-			<li><a class="navbtn prev" href="list.do?pageNum=${startPageNum-1 }">이전</a></li>
+			<li><a class="navbtn prev" href="${pageContext.request.contextPath}/visitboard/list.do?pageNum=${startPageNum-1 }">이전</a></li>
 		</c:when>
 		<c:otherwise>
 			<li><a class="navbtn disabled" href="javascript:">이전</a> <!-- 1이면 mute(가림) --></li>
@@ -88,13 +88,13 @@
 				<!-- <a  class="active" href="list.do?pageNum=${i }">${i }</a> -->
 			</c:when>
 			<c:otherwise>
-				<a href="list.do?pageNum=${i }">${i }</a>
+				<a href="${pageContext.request.contextPath}/visitboard/list.do?pageNum=${i }">${i }</a>
 			</c:otherwise>
 		</c:choose>
 	</c:forEach>
 	<c:choose>
 		<c:when test="${endPageNum lt totalPageCount }">
-			<li><a class="navbtn next" href="list.do?pageNum=${endPageNum+1 }">다음</a></li>
+			<li><a class="navbtn next" href="${pageContext.request.contextPath}/visitboard/list.do?pageNum=${endPageNum+1 }">다음</a></li>
 		</c:when>
 		<c:otherwise>
 			<li><a class="navbtn disabled" href="javascript:">다음</a></li>

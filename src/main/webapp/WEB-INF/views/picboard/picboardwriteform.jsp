@@ -19,7 +19,7 @@
 		<div class="divline"></div>
 		
 		<div class="row">		
-			<form method="post" action="picboardwrite.do">
+			<form method="post" action="${pageContext.request.contextPath}/picboard/picboardwrite.do">
 				<input class="wcon" type="text" name="content_title" id="title" value=""
 							placeholder="제목" maxlength="50"/><!-- maxlength="50" -->
 
@@ -38,7 +38,7 @@
 				<!-- Break -->
 				<input type="hidden" name="ckValue" id="ckValue" value="" />
 				<button type="submit" onclick="return chkData()" id="submit" class="submitbtn" >확인</button>		
-				<button class="backbtn" onclick="location.href='picboardlist.do'" type="button">돌아가기</button>
+				<button class="backbtn" onclick="location.href='${pageContext.request.contextPath}/picboard/picboardlist.do'" type="button">돌아가기</button>
 			</form>
 		</div>
 	</div> <!-- wrapper -->

@@ -40,6 +40,7 @@
 		FROM TP_VISBOARD v
 		JOIN TP_ACCOUNT a ON(a.user_id = v.writer_id)
 		WHERE v.user_id = #{user_id}
+		ORDER BY cont_id DESC
 	</select>
 </mapper>
 

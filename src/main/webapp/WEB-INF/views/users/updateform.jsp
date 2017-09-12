@@ -49,11 +49,11 @@ div.uploadcare--progress, div.uploadcare--progress_type_canvas{
 </head>
 <body>
 <h3>회원정보 수정</h3>
-<a href="${pageContext.request.contextPath }/home.do">홈으로</a>
-<form action="update.do" method="post" id="update_form" class="update_form">
-	<input type="hidden" name="id" value="${session.id }"/>
+<a href="${pageContext.request.contextPath}/home.do">홈으로</a>
+<form action="${pageContext.request.contextPath}/users/update.do" method="post" id="update_form" class="update_form">
+	<input type="hidden" name="id" value="${mydata.id }"/>
 		<div class="">
-			<input type="text" name="id" id="id" placeholder="ID" disabled="disabled" value="${session.id }">
+			<input type="text" name="id" id="id" placeholder="ID" disabled="disabled" value="${mydata.id }">
 		</div>
 		<div class="">
 			<input type="password" name="pwd" id="pwd" placeholder="PASSWORD">
@@ -62,18 +62,18 @@ div.uploadcare--progress, div.uploadcare--progress_type_canvas{
 			<input type="password" name="pwd2" id="pwd2" placeholder="PASSWORD">
 		</div>
 		<div class="">
-			<input type="text" name="name" id="name" placeholder="NAME" value="${session.name }">
+			<input type="text" name="name" id="name" placeholder="NAME" value="${mydata.name }">
 		</div>
 		<div class="">
-			<input type="text" name="phone" id="phone" placeholder="PHONE" value="${session.phone }">
+			<input type="text" name="phone" id="phone" placeholder="PHONE" value="${mydata.phone }">
 		</div>
 		<div class="">
-			<input type="email" name="email" id="email" placeholder="EMAIL" value="${session.email }">
+			<input type="email" name="email" id="email" placeholder="EMAIL" value="${mydata.email }">
 		</div>
 		<div class="4u input-reform-bottom">
 			<div class="image-preview-single">
 				<image id="profileImage"
-					src="${session.profile_img }" />
+					src="${mydata.profile_img }" />
 				<input type="hidden" role="uploadcare-uploader" data-clearable=""
 					data-images-only="">
 				<input type="hidden" name="photo_value" id="photo_value" value="" />
@@ -85,7 +85,7 @@ div.uploadcare--progress, div.uploadcare--progress_type_canvas{
 		<div class="8u input-reform-bottom">
 			<div id="profile-container">
 				<textarea style="resize: none;" name="profile_cmt" id="profile_cmt"
-					rows="5" maxlength="100">${session.profile_cmt }</textarea>
+					rows="5" maxlength="100">${mydata.profile_cmt }</textarea>
 				<label style="text-align: center;">INTRO</label>
 			</div>
 		</div>

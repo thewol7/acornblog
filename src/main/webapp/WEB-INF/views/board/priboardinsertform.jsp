@@ -28,21 +28,19 @@
 <body>
 <jsp:include page="/resources/nav.jsp"></jsp:include>
 <div class="content">
+	<h3>게시글 작성</h3>
 	<div class="divline"></div>
 	<div class="row">
 		<form class="wform" action="priboardinsert.do">
-			<input type="text" name="content_title" placeholder="제목" />
-			<div class="divline"></div>
-				<textarea name="content_content" id="" cols="30" rows="10" class="wcon" style="resize:none; box-sizing:border-box;" placeholder="내용을 적어주세요">
-				
-				</textarea>
+			<input class="wcon" type="text" name="content_title" placeholder="제목"/>
+			<br/>
+			<textarea name="content_content" id="" cols="30" rows="10" class="wcon" style="resize:none; box-sizing:border-box;" placeholder="내용을 적어주세요"></textarea>
+			<br/>
 			<button type="submit">글쓰기</button>
 		</form>
 	   
          
-            </div>
-         </div>
-	</div>
+     </div>
 </div>
 
 </body>

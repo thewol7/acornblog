@@ -16,7 +16,7 @@
 	<h3>${userdata.name} 님 수정중...</h3>
 	<div class="divline"></div>
 		<div class="row">
-			<form method="post" action="picboardupdate.do?cont_id=${cont_id}">
+			<form method="post" action="${pageContext.request.contextPath}/picboard/picboardupdate.do?cont_id=${cont_id}">
 				<input class="wcon" type="text" name="content_title" id="title" value="${dto.content_title}"
 						placeholder="제목" maxlength="50"/>
 				
@@ -34,7 +34,7 @@
 	
 				<!-- Break -->
 				<button type="submit" onclick="return chkData()" id="submit" class="submitbtn" >확인</button>
-				<button type="button" class="backbtn" onclick="location.href='picboardlist.do'">돌아가기</button>
+				<button type="button" class="backbtn" onclick="location.href='${pageContext.request.contextPath}/picboard/picboardlist.do'">돌아가기</button>
 			</form>
 		</div>
 	</div>

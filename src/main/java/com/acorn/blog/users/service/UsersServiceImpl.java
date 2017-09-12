@@ -39,10 +39,16 @@ public class UsersServiceImpl implements UsersService {
 	@Override
 	public ModelAndView signup(UsersDto dto, HttpServletRequest request) {
 		System.out.println("email:" + dto.getEmail());
-		String url = request.getParameter("url");
-
+		String url="";
+		if(request.getParameter("url")!=null){
+			url=request.getParameter("url");
+		}
+		
 		/* 프로필 이미지 */
-		String photo_value = request.getParameter("photo_value");
+		String photo_value="";
+		if(request.getParameter("photo_value")!=null){
+			photo_value=request.getParameter("photo_value");
+		}
 		System.out.println("value:" + photo_value);
 		String profile_image = null;
 		if (photo_value.equals("")) {
@@ -70,7 +76,7 @@ public class UsersServiceImpl implements UsersService {
 		// ModelAndView 객체를 생성해서 정보를 담은 다음
 		ModelAndView mView = new ModelAndView();
 		mView.addObject("msg", dto.getName() + " 회원님 가입 되었습니다.");
-		mView.addObject("url", request.getContextPath());
+		mView.addObject("url", request.getContextPath()+"/home.do");
 		// ModelAndView 객체를 리턴해준다.
 		return mView;
 		

@@ -51,7 +51,7 @@ public class UsersController {
 		ModelAndView mView=new ModelAndView();
 		mView.addObject("msg", "로그 아웃 되었습니다.");
 		mView.addObject("url", 
-				session.getServletContext().getContextPath());
+				session.getServletContext().getContextPath()+"/home.do");
 		mView.setViewName("users/alert");
 		
 		return mView;
@@ -80,23 +80,22 @@ public class UsersController {
 	}
 	
 	@RequestMapping("/users/info")
-	public ModelAndView privateInfo(HttpServletRequest request){
-		ModelAndView mView = new ModelAndView();
-		mView.setViewName("users/info");
-		return mView;
+	public String privateInfo(){
+		
+		return "users/info";
 	}
 	
 
 	@RequestMapping("/users/updateform")
-	public ModelAndView privateUpdateform(HttpServletRequest request){
-		ModelAndView mView = new ModelAndView();
-		mView.setViewName("users/updateform");
-		return mView;
+	public String privateUpdateform(){
+		
+		return "users/updateform";
 	}
 	
 	@RequestMapping("/users/update")
 	public ModelAndView privateUpdate(HttpServletRequest request,
 			@ModelAttribute UsersDto dto){
+		System.out.println("dto에 담긴 아이디:"+dto.getId());
 		usersService.update(dto, request);
 		ModelAndView mView=new ModelAndView();
 		mView.addObject("msg", "수정하였습니다.");
