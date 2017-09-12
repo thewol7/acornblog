@@ -16,21 +16,21 @@
 
 <jsp:include page="/resources/nav.jsp"></jsp:include>
 <div class="content">
-  <h3>${info.name }님의 페이지입니다.</h3>
+  <h3>${userdata.name }님의 페이지입니다.</h3>
   <div class="divline"></div>
   <div class="main-profile">
   	<%-- ${info.profile_img } --%>
   	<c:choose>
-	  	<c:when test="${empty info.profile_img }">
+	  	<c:when test="${empty userdata.profile_img }">
 	  		<img src="${pageContext.request.contextPath }/resources/images/icons/default.png" /> 
 	  	</c:when>
 	  	<c:otherwise>
-  			<img src="${info.profile_img }" />
+  			<img src="${userdata.profile_img }" />
   		</c:otherwise>
   	</c:choose>
-    <h4>이름: 페이지주인(${info.name })</h4>
-    <h4>성별: ${info.gender }</h4>
-    <h4>이메일: ${info.email }</h4>
+    <h4>이름: 페이지주인(${userdata.name })</h4>
+    <h4>성별: ${userdata.gender }</h4>
+    <h4>이메일: ${userdata.email }</h4>
     <h4>등등등 </h4>
   </div>
   <h3>최근 게시글</h3>

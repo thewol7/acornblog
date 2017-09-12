@@ -80,16 +80,18 @@ public class UsersController {
 	}
 	
 	@RequestMapping("/users/info")
-	public String privateInfo(){
-		
-		return "users/info";
+	public ModelAndView privateInfo(HttpServletRequest request){
+		ModelAndView mView = new ModelAndView();
+		mView.setViewName("users/info");
+		return mView;
 	}
 	
 
 	@RequestMapping("/users/updateform")
-	public String privateUpdateform(){
-		
-		return "users/updateform";
+	public ModelAndView privateUpdateform(HttpServletRequest request){
+		ModelAndView mView = new ModelAndView();
+		mView.setViewName("users/updateform");
+		return mView;
 	}
 	
 	@RequestMapping("/users/update")

@@ -19,7 +19,7 @@
 	<div class="content">
 
 
-	<h3>${info.name}님의 사진첩</h3>
+	<h3>${userdata.name}님의 사진첩</h3>
 	<div class="divline"></div>
 	
 	<a href="picboardwriteform.do" class="wbtn">새글쓰기</a>

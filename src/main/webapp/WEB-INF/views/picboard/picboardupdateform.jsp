@@ -13,7 +13,7 @@
 	<!-- Wrapper -->
 	<div class="content">
 	
-	<h3>${info.name} 님 수정중...</h3>
+	<h3>${userdata.name} 님 수정중...</h3>
 	<div class="divline"></div>
 		<div class="row">
 			<form method="post" action="picboardupdate.do?cont_id=${cont_id}">

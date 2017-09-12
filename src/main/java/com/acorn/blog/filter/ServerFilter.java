@@ -43,31 +43,28 @@ public class ServerFilter implements Filter {
 		
 		if(request.getParameter("page_id")!=null){
 			request.getSession().setAttribute("page_id", Integer.parseInt(request.getParameter("page_id")));
-		}
-		
-		if(request.getSession().getAttribute("page_id")!=null){
-			request.setAttribute("page_id", request.getSession().getAttribute("page_id"));
-		}
-		
-		if(request.getSession().getAttribute("page_id")==null && request.getSession().getAttribute("id")!=null && !tmp[tmp.length-1].equals("signin_form.do") && !tmp[tmp.length-1].equals("signin.do") && !tmp[tmp.length-1].equals("signup_form.do") && !tmp[tmp.length-1].equals("signup.do")){
-			request.getSession().setAttribute("page_id", request.getSession().getAttribute("id"));
-			response.sendRedirect(request.getContextPath()+"/home.do");
-			return;
-		}
-		
-		if(request.getSession().getAttribute("page_id")==null && !tmp[tmp.length-1].equals("signin_form.do") && !tmp[tmp.length-1].equals("signin.do") && !tmp[tmp.length-1].equals("signup.do")){
+		}else if(request.getSession().getAttribute("page_id")==null){
 			request.getSession().setAttribute("page_id", usersDao.getRandomPage().getUser_id());
-			response.sendRedirect(request.getContextPath()+"/home.do");
-			return;
+		}
+		if(request.getSession().getAttribute("page_id")==null){
+			if(request.getSession().getAttribute("id")!=null){
+				request.getSession().setAttribute("page_id", (Integer) request.getSession().getAttribute("id"));
+				UsersDto dto=usersDao.getInfo((Integer) request.getSession().getAttribute("page_id"));
+				request.setAttribute("userdata", dto);
+			}else{
+				request.getSession().setAttribute("page_id", usersDao.getRandomPage().getUser_id());
+			}
+		}else{
+			UsersDto dto=usersDao.getInfo((Integer) request.getSession().getAttribute("page_id"));
+			request.setAttribute("userdata", dto);
 		}
 		
-		if(request.getSession().getAttribute("id") != null){
-			UsersDto dto=usersDao.getInfo((Integer) request.getSession().getAttribute("id"));
-			request.setAttribute("session", dto);
+		if(request.getSession().getAttribute("id")!=null){
+			if(request.getSession().getAttribute("mydata")==null){
+				UsersDto dto=usersDao.getInfo((Integer) request.getSession().getAttribute("id"));
+				request.setAttribute("mydata", dto);
+			}
 		}
-		
-		UsersDto dto=usersDao.getInfo((Integer) request.getSession().getAttribute("page_id"));
-		request.setAttribute("info", dto);
 		
 		chain.doFilter(req, res);
 		

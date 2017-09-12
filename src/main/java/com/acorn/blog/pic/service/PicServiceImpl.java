@@ -17,8 +17,8 @@ public class PicServiceImpl implements PicService {
 	@Autowired
 	private PicDao picDao;
 	
-//	@Autowired
-//	private PicCommentDao commentDao;
+	@Autowired
+	private PicCommentDao commentDao;
 	
 	@Override
 	public void insertPics(PicDto dto) {
@@ -38,10 +38,10 @@ public class PicServiceImpl implements PicService {
 	public ModelAndView getPicdetail(PicDto dto,int page_id) {
 		dto.setUser_id(page_id);
 		PicDto resultDto=picDao.getPicdetail(dto);
-//		List<PicCommentDto> commentList=commentDao.getList(dto.getCont_id());
+		List<PicCommentDto> commentList=commentDao.getList(dto.getCont_id());
 		ModelAndView mView=new ModelAndView();
 		mView.addObject("dto",resultDto);
-//		mView.addObject("commentList", commentList);
+		mView.addObject("commentList", commentList);
 		return mView;
 	}
 
@@ -65,19 +65,24 @@ public class PicServiceImpl implements PicService {
 		return picDao.getCount(user_id);
 	}
 
-//	@Override
-//	public void commentInsert(PicCommentDto dto) {
-//		//1. 저장할 덧글번호를 미리 읽어온다.
-//		int seq=commentDao.getSequence();
-//		dto.setNum(seq);
-//		//2. 원글의 덧글인지 덧글의 덧글인지 판정해서 다른 처리를 해준다.
-//		int comment_group=dto.getComment_group();
-//		if(comment_group==0){	// 0 이면 원글의 덧글
-//			//원글의 덧글이면 그룹번호를 저장할 덧글 번호로 지정한다.
-//			dto.setComment_group(seq);
-//		}
-//		//3. Dao 를 이용해서 DB 에 저장
-//		commentDao.insert(dto);
-//	}
+	@Override
+	public void commentInsert(PicCommentDto dto) {
+		//1. 저장할 덧글번호를 미리 읽어온다.
+		int seq=commentDao.getSequence();
+		dto.setNum(seq);
+		//2. 원글의 덧글인지 덧글의 덧글인지 판정해서 다른 처리를 해준다.
+		int comment_group=dto.getComment_group();
+		if(comment_group==0){	// 0 이면 원글의 덧글
+			//원글의 덧글이면 그룹번호를 저장할 덧글 번호로 지정한다.
+			dto.setComment_group(seq);
+		}
+		//3. Dao 를 이용해서 DB 에 저장
+		commentDao.insert(dto);
+	}
+
+	@Override
+	public void commentDelete(int cont_id) {
+		commentDao.delete(cont_id);
+	}
 
 }

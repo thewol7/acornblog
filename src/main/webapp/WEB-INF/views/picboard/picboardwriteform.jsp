@@ -15,7 +15,7 @@
 <jsp:include page="/resources/nav.jsp"></jsp:include>
 	<!-- Wrapper -->
 	<div class="content">
-		<h3>${info.name} 님 사진추가중...</h3>
+		<h3>${userdata.name} 님 사진추가중...</h3>
 		<div class="divline"></div>
 		
 		<div class="row">		

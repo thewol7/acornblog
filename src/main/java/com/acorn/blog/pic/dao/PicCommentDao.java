@@ -10,4 +10,5 @@ public interface PicCommentDao {
 	public List<PicCommentDto> getList(int ref_group);
 	//새 덧글의 글번호(sequence) 값을 얻어내서 리턴해주는 메소드
 	public int getSequence();
+	public void delete(int num);
 }

@@ -3,9 +3,10 @@
 <mapper namespace="pricomment">
 	<select id="getList" parameterType="int"
 		resultType="PriCommentDto">
-		SELECT num, writer, content, ref_group, comment_group,
+		SELECT num, name,p.writer, content, ref_group, comment_group,
 		regdate
-		FROM tp_priboard_comment
+		FROM tp_priboard_comment p
+		JOIN tp_account a ON( a.user_id = p.writer) 
 		WHERE ref_group=#{num}
 		ORDER BY comment_group ASC, num ASC			
 	</select>

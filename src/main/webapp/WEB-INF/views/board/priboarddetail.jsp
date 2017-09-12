@@ -46,7 +46,7 @@
                      <div class="reply_icon"></div>
                   </c:if>
                   <div>      
-                     <strong>from ${tmp.writer }</strong>
+                     <strong>from ${tmp.name }</strong>
                      ${tmp.regdate }<br/>
                   </div>
                   <textarea rows="5" disabled>${tmp.content}</textarea><br/>
@@ -56,15 +56,17 @@
             </c:forEach>
          
             <div class="comment_form">
+            	<c:if test="${not empty id }">
                <form class="wform vform" action="pricommentinsert.do?cont_id=${dto.cont_id }" method="post">
                   <!-- 덧글 작성자 -->
                   <input type="hidden" name="writer" value="${id}"/>
-                  <h4>독자: </h4>
+                  <h4>${mydata.name}: </h4>
                   <!-- 덧글 그룹 -->
                   <!-- <textarea name="content" style="resize:none"></textarea> -->
                   <input type="text" class="wcon" name="content" />
                   <button type="submit">등록</button>
                </form>
+               </c:if>
             </div>
          </div>
 	</div>

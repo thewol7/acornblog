@@ -111,7 +111,7 @@ public class LoginAspect {
 			return "redirect:/home.do";
 		}
 	}
-//	@Before("execution(* * *(..))")
+//	@Before("execution(public * *(..))")
 //	public void pageidCheck(HttpServletRequest request){
 //		if(request.getSession().getAttribute("page_id")==null){
 //			if(request.getSession().getAttribute("id")==null){

@@ -4,9 +4,10 @@
 
 	<select id="getList" parameterType="int"
 		resultType="picCommentDto">
-		SELECT num, user_id, writer, content, ref_group, comment_group,
-		regdate, profile_img
-		FROM tp_picboard_comment
+		SELECT num, name,p.writer, content, ref_group, comment_group,
+		regdate
+		FROM tp_picboard_comment p
+		JOIN tp_account a ON( a.user_id = p.writer) 
 		WHERE ref_group=#{num}
 		ORDER BY comment_group ASC, num ASC			
 	</select>
@@ -16,12 +17,16 @@
 		FROM DUAL
 	</select>
 	<insert id="insert" parameterType="picCommentDto">
-		INSERT INTO board_cafe_comment
-		(num, user_id, writer, content, ref_group, comment_group,
-		regdate, profile_img)
-		VALUES(#{num}, #{user_id}, #{writer}, #{content},
-			   #{ref_group}, #{comment_group}, SYSDATE, #{profile_img})
+		INSERT INTO tp_picboard_comment
+		(num, writer, content, ref_group, comment_group,regdate)
+		VALUES(#{num}, #{writer}, #{content},
+			   #{ref_group}, #{comment_group}, SYSDATE)
 	</insert>
+	<delete id="delete" parameterType="int">
+		DELETE 
+		FROM tp_picboard_comment 
+		WHERE num=#{num} 
+	</delete>
 </mapper>
 
 

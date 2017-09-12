@@ -29,4 +29,9 @@ public class PicCommentDaoImpl implements PicCommentDao {
 		return session.selectOne("picComment.getSequence");
 	}
 
+	@Override
+	public void delete(int num) {
+		session.delete("picComment.delete", num);
+	}
+
 }

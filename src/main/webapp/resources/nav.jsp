@@ -5,15 +5,39 @@
 
   <div class="profile">
   <c:choose>
-	  	<c:when test="${empty info.profile_img }">
+  	<c:when test="${not empty id }">
+  		<c:choose>
+	  	<c:when test="${empty mydata.profile_img }">
 	  		<img src="${pageContext.request.contextPath }/resources/images/icons/default.png" /> 
 	  	</c:when>
 	  	<c:otherwise>
-  			<img src="${info.profile_img }" />
+  			<img src="${mydata.profile_img }" />
   		</c:otherwise>
+  		</c:choose>
+  	</c:when>
+  	<c:otherwise>
+  		<c:choose>
+	  	<c:when test="${empty userdata.profile_img }">
+	  		<img src="${pageContext.request.contextPath }/resources/images/icons/default.png" /> 
+	  	</c:when>
+	  	<c:otherwise>
+  			<img src="${userdata.profile_img }" />
+  		</c:otherwise>
+  		</c:choose>
+  	</c:otherwise>
   </c:choose>
+  
   </div>
-  <div class="owner">${info.name }</div>
+  <div class="owner">
+  	<c:choose>
+  		<c:when test="${not empty id }">
+  			${mydata.name }
+  		</c:when>
+  		<c:otherwise>
+  			${userdata.name }
+  		</c:otherwise>
+  	</c:choose>
+  </div>
   <ul>
     <li><a class="active" href="${pageContext.request.contextPath }/home.do">HOME</a></li>
     <li class="dropdown-toggle"><a href="javascript:">BOARD</a></li>
@@ -25,12 +49,15 @@
 
       </ul>
     <li><a href="${pageContext.request.contextPath }/others/userlist.do">OTHERS</a></li>
-    <li class="dropdown-toggle"><a href="javascript:">MY PAGE</a></li>
-      <ul class="dropdown-menu">
-        <li><a href="${pageContext.request.contextPath }/home.do?page_id=${id }">내 블로그</a></li>
-        <li><a href="${pageContext.request.contextPath }/users/info.do">개인정보 관리</a></li>
-        <li><a href="javascript:">설정</a></li>
-      </ul>
+    
+    <c:if test="${not empty id }">
+	    <li class="dropdown-toggle"><a href="javascript:">MY PAGE</a></li>
+	      <ul class="dropdown-menu">
+	        <li><a href="${pageContext.request.contextPath }/home.do?page_id=${id }">내 블로그</a></li>
+	        <li><a href="${pageContext.request.contextPath }/users/info.do">개인정보 관리</a></li>
+	       
+	      </ul>
+    </c:if>
     <c:choose>
       	<c:when test="${empty id }">
     <li class="visible-lg"><a href="${pageContext.request.contextPath }/users/signin_form.do?url=${pageContext.request.contextPath }">로그인</a></li>
@@ -48,7 +75,9 @@
     <li><a href="${pageContext.request.contextPath }/board/priboardlist.do?url=${pageContext.request.contextPath }">BOARD</a></li>
 
     <li><a href="javascript:">OTHERS</a></li>
+    <c:if test="${not empty id }">
     <li><a href="${pageContext.request.contextPath }/home.do?page_id=${id }">MY PAGE</a></li>
+    </c:if>
     <c:choose>
       	<c:when test="${empty id }">
     <li><a href="${pageContext.request.contextPath }/users/signin_form.do?url=${pageContext.request.contextPath }">로그인</a></li>

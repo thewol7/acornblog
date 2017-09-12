@@ -5,6 +5,7 @@ public class PriBoardCommentDto {
 	private int user_id; // ${id}
 	private String writer; // ${info.name}
 	private String content;
+	private String name;
 	private int ref_group; // 덧글의 그룹 번호
 	private int comment_group; // 덧글 내에서의 그룹
 	private String regdate;
@@ -13,13 +14,14 @@ public class PriBoardCommentDto {
 	public PriBoardCommentDto() {
 	}
 
-	public PriBoardCommentDto(int num, int user_id, String writer, String content, int ref_group, int comment_group,
-			String regdate) {
+	public PriBoardCommentDto(int num, int user_id, String writer, String content, String name, int ref_group,
+			int comment_group, String regdate) {
 		super();
 		this.num = num;
 		this.user_id = user_id;
 		this.writer = writer;
 		this.content = content;
+		this.name = name;
 		this.ref_group = ref_group;
 		this.comment_group = comment_group;
 		this.regdate = regdate;
@@ -57,6 +59,14 @@ public class PriBoardCommentDto {
 		this.content = content;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public int getRef_group() {
 		return ref_group;
 	}
@@ -80,4 +90,6 @@ public class PriBoardCommentDto {
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
+
+	
 }

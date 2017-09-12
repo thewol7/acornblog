@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.acorn.blog.board.dto.PriBoardCommentDto;
 import com.acorn.blog.pic.dto.PicCommentDto;
 import com.acorn.blog.pic.dto.PicDto;
 import com.acorn.blog.pic.service.PicService;
@@ -28,19 +29,19 @@ public class PicController {
 	private PicService picService;
 	
 	//덧글 입력 요청처리
-//	@RequestMapping("/picboard/comment_insert")
-//	public String idCheckcommentInsert(@ModelAttribute PicCommentDto dto){
-//		// @ModelAttribute 어노테이션을 이용해서 덧글정보를 얻어온다.
-//		
-//		//서비스 객체를 이용해서 덧글이 저장될 수 있도록 한다.
-//		picService.commentInsert(dto);
-//		
-//		//원글의 글번호를 읽어와서
-//		int num=dto.getRef_group();
-//		
-//		//리다이렉트 응답할 때 사용한다.
-//		return "redirect:/picboard/detail.do?num="+num;
-//	}
+	@RequestMapping("/picboard/comment_insert")
+	public String idCheckcommentInsert(HttpSession session,@RequestParam int cont_id,
+			@ModelAttribute PicCommentDto dto){
+		dto.setRef_group(cont_id);
+		picService.commentInsert(dto);
+		return "redirect:/picboard/picboarddetail.do?cont_id="+cont_id;
+	}
+	
+	@RequestMapping("/picboard/piccommentdelete")
+	public String commentDelete(HttpSession session,@RequestParam int num,@RequestParam int cont_id){
+		picService.commentDelete(num);
+		return "redirect:/picboard/picboarddetail.do?cont_id="+cont_id;
+	}
 	
 	@RequestMapping("/picboard/picboardlist")
 	public ModelAndView getList(HttpServletRequest request){
@@ -142,7 +143,6 @@ public class PicController {
 		int cont_id=Integer.parseInt(request.getParameter("cont_id"));
 		int page_id=(Integer)request.getSession().getAttribute("page_id");
 		dto.setCont_id(cont_id);
-		
 		ModelAndView mView=picService.getPicdetail(dto, page_id);
 		mView.setViewName("picboard/picboarddetail");
 		String id=(String)request.getSession().getAttribute("writer");
